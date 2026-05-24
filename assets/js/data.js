@@ -25,116 +25,123 @@ window.SITE_CONFIG = {
 
 window.AREAS = [
   {
-    id: "defensa-penal-estrategica",
-    title: "Defensa Penal Estratégica",
+    id: "derecho-penal",
+    title: "Derecho Penal",
     kicker: "Área penal",
-    excerpt: "Representamos a personas, funcionarios y empresas en investigaciones y procesos penales complejos, con enfoque técnico, preventivo y probatorio.",
+    icon: "penal",
+    excerpt: "Defensa técnica en investigaciones, denuncias, diligencias preliminares, procesos penales y estrategias probatorias.",
     image: "penal",
     details: [
-      { title: "Litigación penal compleja", text: "Diseño de teoría del caso, estrategia probatoria, audiencias, recursos y defensa integral desde la investigación preliminar hasta juicio." },
-      { title: "Delitos económicos y patrimoniales", text: "Asesoría y patrocinio en controversias penales vinculadas a fraude, administración, patrimonio y responsabilidad empresarial." },
-      { title: "Defensa de funcionarios", text: "Atención especializada en casos vinculados a función pública, procedimientos de control y contingencias administrativas con incidencia penal." }
+      { title: "Defensa penal integral", text: "Patrocinio desde la etapa preliminar hasta juicio, con ordenamiento documental, teoría del caso y estrategia de defensa." },
+      { title: "Asesoría preventiva", text: "Evaluación de riesgos penales, revisión de antecedentes del caso y preparación para citaciones, declaraciones y diligencias." },
+      { title: "Acompañamiento estratégico", text: "Elaboración de escritos, recursos, solicitudes, defensa en audiencias y coordinación permanente con el cliente." }
+    ]
+  },
+  {
+    id: "derecho-civil",
+    title: "Derecho Civil",
+    kicker: "Contratos y obligaciones",
+    icon: "civil",
+    excerpt: "Asesoría y patrocinio en obligaciones, contratos, indemnizaciones, responsabilidad civil y controversias patrimoniales.",
+    image: "civil",
+    details: [
+      { title: "Contratos y obligaciones", text: "Revisión, elaboración y negociación de contratos, acuerdos, cartas notariales y documentos vinculados a relaciones civiles." },
+      { title: "Responsabilidad civil", text: "Evaluación de daños, incumplimientos, controversias patrimoniales e indemnizaciones." },
+      { title: "Solución de controversias", text: "Estrategia para conciliaciones, procesos judiciales y mecanismos de solución directa." }
+    ]
+  },
+  {
+    id: "derecho-inmobiliario-registral",
+    title: "Derecho Inmobiliario y Registral",
+    kicker: "Propiedad y registro",
+    icon: "inmobiliario",
+    excerpt: "Saneamiento, transferencias, posesión, propiedad, inscripción registral y asesoría en operaciones inmobiliarias.",
+    image: "inmobiliario",
+    details: [
+      { title: "Saneamiento de propiedad", text: "Revisión de antecedentes, partidas registrales, títulos, cargas, gravámenes y situación legal del inmueble." },
+      { title: "Operaciones inmobiliarias", text: "Acompañamiento en compraventas, arrendamientos, cesiones, transferencias y contratos vinculados a inmuebles." },
+      { title: "Gestión registral", text: "Preparación de documentación y seguimiento de trámites ante registros públicos y entidades competentes." }
+    ]
+  },
+  {
+    id: "derecho-constitucional",
+    title: "Derecho Constitucional",
+    kicker: "Garantías y derechos",
+    icon: "constitucional",
+    excerpt: "Defensa de derechos fundamentales, procesos constitucionales, garantías y controversias de relevancia pública.",
+    image: "constitucional",
+    details: [
+      { title: "Procesos constitucionales", text: "Patrocinio en acciones orientadas a la tutela de derechos fundamentales y garantías constitucionales." },
+      { title: "Análisis de afectación de derechos", text: "Evaluación técnica de actos, omisiones o decisiones que pudieran vulnerar derechos constitucionales." },
+      { title: "Estrategia legal", text: "Diseño de argumentos, medios probatorios y escritos con enfoque constitucional." }
+    ]
+  },
+  {
+    id: "derecho-administrativo",
+    title: "Derecho Administrativo",
+    kicker: "Procedimientos y sanciones",
+    icon: "administrativo",
+    excerpt: "Asesoría en procedimientos administrativos, recursos, fiscalizaciones, sanciones y actuaciones ante entidades públicas.",
+    image: "administrativo",
+    details: [
+      { title: "Procedimiento administrativo", text: "Atención de solicitudes, descargos, recursos administrativos, expedientes y actuaciones ante entidades públicas." },
+      { title: "Fiscalización y sanciones", text: "Defensa frente a procedimientos sancionadores, medidas administrativas, multas y observaciones." },
+      { title: "Estrategia documental", text: "Ordenamiento de antecedentes, medios probatorios y argumentos de defensa administrativa." }
+    ]
+  },
+  {
+    id: "derecho-laboral",
+    title: "Derecho Laboral",
+    kicker: "Relaciones laborales",
+    icon: "laboral",
+    excerpt: "Asesoría en relaciones laborales, contratación, desvinculación, reclamos, sanciones, conciliaciones y defensa laboral.",
+    image: "laboral",
+    details: [
+      { title: "Asesoría laboral preventiva", text: "Revisión de contratos, obligaciones laborales, reglamentos, políticas internas y contingencias." },
+      { title: "Conflictos laborales", text: "Atención de reclamos, conciliaciones, cartas, despidos, sanciones y controversias individuales o colectivas." },
+      { title: "Defensa legal", text: "Patrocinio en procedimientos administrativos y judiciales vinculados a materia laboral." }
     ]
   },
   {
     id: "administracion-publica",
-    title: "Delitos contra la Administración Pública",
-    kicker: "Función pública",
-    excerpt: "Asesoramos en casos de corrupción, colusión, peculado, negociación incompatible y otros delitos vinculados a la actividad estatal.",
+    title: "Administración Pública",
+    kicker: "Gestión pública",
+    icon: "publica",
+    excerpt: "Asesoría legal y técnica para entidades, funcionarios y servidores en gestión pública, control y responsabilidad funcional.",
     image: "publica",
     details: [
-      { title: "Defensa de autoridades y servidores", text: "Estrategias para investigaciones vinculadas a decisiones públicas, contrataciones, presupuesto, control gubernamental y gestión municipal." },
-      { title: "Informes legales y periciales", text: "Elaboración de informes técnicos, matrices de hechos, cronologías documentales y soporte para teoría defensiva." },
-      { title: "Enfoque preventivo", text: "Identificación de riesgos penales en procedimientos administrativos, contrataciones públicas y gestión institucional." }
+      { title: "Gestión pública y legalidad", text: "Asesoría en competencias, funciones, actos administrativos, informes, responsabilidades y toma de decisiones públicas." },
+      { title: "Control y responsabilidad", text: "Evaluación de riesgos administrativos, funcionales y documentales frente a órganos de control o fiscalización." },
+      { title: "Soporte técnico institucional", text: "Elaboración de informes, opiniones, descargos y documentos de gestión con enfoque legal y administrativo." }
     ]
   },
   {
-    id: "penal-tributario-financiero",
-    title: "Penal Tributario y Financiero",
-    kicker: "Empresa y finanzas",
-    excerpt: "Acompañamos a empresas, directivos y profesionales frente a riesgos tributarios, financieros y patrimoniales con incidencia penal.",
-    image: "tributario",
+    id: "contrataciones-estado",
+    title: "Contrataciones del Estado",
+    kicker: "Compras públicas",
+    icon: "contrataciones",
+    excerpt: "Asesoría en requerimientos, expedientes de contratación, ejecución contractual, controversias y gestión de riesgos.",
+    image: "contrataciones",
     details: [
-      { title: "Defensa tributaria penal", text: "Análisis de contingencias, documentación contable y coordinación de estrategia ante fiscalizaciones o investigaciones." },
-      { title: "Lavado de activos", text: "Revisión documental, trazabilidad económica, matrices de riesgo y defensa técnica frente a imputaciones patrimoniales." },
-      { title: "Prevención corporativa", text: "Protocolos internos para reducir riesgos penales vinculados a operaciones empresariales y financieras." }
+      { title: "Fase preparatoria", text: "Revisión de requerimientos, términos de referencia, especificaciones técnicas, indagación de mercado y documentación del expediente." },
+      { title: "Ejecución contractual", text: "Acompañamiento en conformidades, penalidades, ampliaciones, adicionales, controversias y obligaciones contractuales." },
+      { title: "Prevención de contingencias", text: "Identificación de riesgos legales, administrativos y presupuestales en procesos de contratación pública." }
     ]
   },
   {
-    id: "compliance",
-    title: "Criminal Compliance y Preventivo Penal",
-    kicker: "Prevención",
-    excerpt: "Implementamos modelos de prevención, mapas de riesgo y programas de cumplimiento penal adecuados a cada organización.",
-    image: "compliance",
+    id: "derecho-electoral",
+    title: "Derecho Electoral",
+    kicker: "Procesos electorales",
+    icon: "electoral",
+    excerpt: "Asesoría en procedimientos electorales, organizaciones políticas, candidaturas, tachas, exclusiones y defensa electoral.",
+    image: "electoral",
     details: [
-      { title: "Modelos de prevención", text: "Diseño, actualización y auditoría de programas de cumplimiento penal y anticorrupción." },
-      { title: "Capacitación corporativa", text: "Talleres para directivos, colaboradores y áreas sensibles de la organización." },
-      { title: "Investigaciones internas", text: "Protocolos de investigación, entrevistas, preservación documental y recomendaciones correctivas." }
-    ]
-  },
-  {
-    id: "derecho-informatico",
-    title: "Derecho Informático y Ciberdelito",
-    kicker: "Tecnología",
-    excerpt: "Brindamos asesoría legal en delitos informáticos, evidencia digital, protección de datos, ciberseguridad y transformación digital.",
-    image: "digital",
-    details: [
-      { title: "Evidencia digital", text: "Revisión de soportes, trazabilidad, cadena de custodia y soporte técnico-jurídico para controversias digitales." },
-      { title: "Ciberdelito", text: "Defensa y asesoría ante fraudes, accesos indebidos, suplantación, afectaciones informáticas y riesgos tecnológicos." },
-      { title: "Protección de datos", text: "Políticas, documentos internos y asesoría para tratamiento responsable de información personal." }
-    ]
-  },
-  {
-    id: "administrativo-contrataciones",
-    title: "Administrativo y Contrataciones con el Estado",
-    kicker: "Sector público",
-    excerpt: "Acompañamos procedimientos administrativos, contrataciones públicas, descargos, recursos, sancionadores y gestión regulatoria.",
-    image: "estado",
-    details: [
-      { title: "Procedimientos administrativos", text: "Elaboración de escritos, recursos, informes y defensa ante procedimientos sancionadores." },
-      { title: "Contrataciones públicas", text: "Asesoría a entidades, proveedores y áreas usuarias en actos preparatorios, ejecución contractual y controversias." },
-      { title: "Gestión pública", text: "Soporte técnico-legal para municipalidades, programas, convenios y actos de administración interna." }
-    ]
-  },
-  {
-    id: "litigios-empresariales",
-    title: "Litigios Empresariales y de las Personas",
-    kicker: "Solución de conflictos",
-    excerpt: "Diseñamos estrategias para controversias civiles, comerciales, societarias y patrimoniales, priorizando soluciones eficientes.",
-    image: "litigios",
-    details: [
-      { title: "Litigios civiles y comerciales", text: "Patrocinio en controversias contractuales, indemnizaciones, obligaciones y procesos de conocimiento." },
-      { title: "Negociación", text: "Estrategias de negociación, transacción y solución temprana de conflictos." },
-      { title: "Gestión probatoria", text: "Organización de medios probatorios, cronologías, anexos y soporte documental." }
-    ]
-  },
-  {
-    id: "corporativo",
-    title: "Derecho Empresarial y Corporativo",
-    kicker: "Negocios",
-    excerpt: "Asesoramos a empresas en constitución, gobierno corporativo, contratos, alianzas, cumplimiento y toma de decisiones estratégicas.",
-    image: "corporativo",
-    details: [
-      { title: "Gobierno corporativo", text: "Actas, juntas, poderes, libros societarios y ordenamiento documental." },
-      { title: "Contratos", text: "Diseño, revisión y negociación de contratos civiles, comerciales y de prestación de servicios." },
-      { title: "Crecimiento empresarial", text: "Acompañamiento legal para nuevas líneas de negocio, alianzas y formalización de operaciones." }
-    ]
-  },
-  {
-    id: "arbitral",
-    title: "Arbitral",
-    kicker: "Controversias",
-    excerpt: "Representamos a empresas y personas en arbitrajes comerciales, contractuales y vinculados a ejecución de obligaciones.",
-    image: "arbitral",
-    details: [
-      { title: "Estrategia arbitral", text: "Definición de pretensiones, contestaciones, pruebas, informes orales y ejecución de laudo." },
-      { title: "Contratos y cláusulas", text: "Revisión de convenios arbitrales, cláusulas de solución de controversias y matriz de riesgos contractuales." },
-      { title: "Controversias con el Estado", text: "Asesoría en controversias derivadas de ejecución contractual pública." }
+      { title: "Asesoría electoral", text: "Revisión de requisitos, documentación, candidaturas, inscripción y cumplimiento de reglas electorales." },
+      { title: "Defensa en controversias", text: "Atención de tachas, exclusiones, observaciones, apelaciones y procedimientos ante órganos electorales." },
+      { title: "Estrategia preventiva", text: "Ordenamiento documental y prevención de riesgos legales durante procesos electorales." }
     ]
   }
 ];
-
-
 
 window.STAFF = [
   {
