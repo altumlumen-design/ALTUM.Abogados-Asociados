@@ -346,3 +346,173 @@ body:not(.has-pointer) .cursor-aura{display:none}
   .cursor-aura{display:none!important}.reveal{opacity:1!important;transform:none!important;filter:none!important}
   .slide{position:relative;opacity:1;transform:none}.slide:not(.active){display:none}
 }
+
+
+/* =========================================================
+   PERSONALIZACIÓN ALTUM ABOGADOS & ASOCIADOS
+   Línea gráfica basada en isotipo y logos proporcionados.
+   ========================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+:root{
+  --bg:#0a111b;
+  --bg-2:#111927;
+  --bg-3:#171f2d;
+  --paper:#f4f4f2;
+  --paper-2:#fcfbf8;
+  --ink:#11161d;
+  --muted:#5d6168;
+  --line:rgba(229,209,123,.18);
+  --line-dark:rgba(17,22,29,.11);
+  --gold:#e6d37e;
+  --gold-2:#c6ab4e;
+  --shadow:0 28px 70px rgba(5,12,20,.24);
+  --shadow-soft:0 20px 48px rgba(10,17,27,.11);
+  --radius:28px;
+  --radius-sm:18px;
+}
+body{font-family:"Poppins",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:linear-gradient(180deg,#f7f6f3 0%,#f1efea 100%);color:var(--ink)}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(circle at 12% 0%, rgba(230,211,126,.14), transparent 28%),radial-gradient(circle at 95% 12%, rgba(17,25,39,.12), transparent 22%);z-index:-1}
+h1,h2,h3,h4,.brand-text strong{font-family:"Poppins",system-ui,sans-serif}
+.eyebrow,.kicker,.section-head .kicker{letter-spacing:.18em;text-transform:uppercase;font-size:.78rem;font-weight:600;color:var(--gold-2)}
+
+.site-header{backdrop-filter:blur(12px);background:rgba(10,17,27,.9);border-bottom:1px solid rgba(230,211,126,.14)}
+.site-header.scrolled{background:rgba(10,17,27,.95);box-shadow:0 8px 30px rgba(0,0,0,.22)}
+.navbar{max-width:1220px}
+.nav-links a{font-weight:500;color:rgba(255,255,255,.78)}
+.nav-links a.active,.nav-links a:hover{color:var(--gold)}
+.menu-toggle span,.menu-toggle span::before,.menu-toggle span::after{background:#fff}
+.mobile-panel{background:linear-gradient(160deg,#0a111b,#151f2d);color:#fff}
+.mobile-panel a{color:#fff}
+
+.brand{gap:14px}
+.brand-mark{width:58px;height:58px;min-width:58px;border-radius:14px;background:transparent url('../img/isotipo-altum.png') center/contain no-repeat !important;box-shadow:none;border:none;color:transparent !important;font-size:0 !important}
+.brand-text strong{font-size:1.08rem;letter-spacing:.11em;color:#fff;text-transform:uppercase}
+.brand-text span{font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.58)}
+.site-footer .brand-text strong{color:#fff}
+.site-footer .brand-text span{color:rgba(255,255,255,.58)}
+
+.preloader{background:linear-gradient(160deg,#0a111b,#151f2d)}
+.preloader small{color:rgba(255,255,255,.72);letter-spacing:.16em;text-transform:uppercase}
+.preloader .loader-mark{width:118px;height:118px;border-radius:22px;background:transparent url('../img/isotipo-altum.png') center/contain no-repeat !important;border:none;box-shadow:none;color:transparent !important;font-size:0 !important}
+
+.hero{min-height:95vh;background:linear-gradient(135deg,#0a111b 0%,#121a28 55%,#1a2433 100%);position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,17,27,.92) 0%,rgba(10,17,27,.76) 48%,rgba(10,17,27,.3) 100%);pointer-events:none}
+.hero::after{content:"";position:absolute;right:-10%;top:50%;transform:translateY(-50%);width:min(58vw,760px);height:min(58vw,760px);background:url('../img/isotipo-altum.png') center/contain no-repeat;opacity:.08;pointer-events:none;filter:grayscale(.1)}
+.hero-content{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,1fr) 220px;align-items:end;gap:34px;padding:9rem 0 6rem;max-width:1220px;margin:0 auto;width:100%}
+.hero h1{font-size:clamp(2.4rem,6vw,4.9rem);line-height:1.04;max-width:780px;color:#fff;font-weight:800;text-transform:uppercase;letter-spacing:.02em;text-shadow:0 10px 26px rgba(0,0,0,.22)}
+.hero p{max-width:680px;color:rgba(255,255,255,.78);font-size:1.06rem}
+.hero .actions{margin-top:1.7rem}
+.hero .btn{min-width:180px}
+.hero-side{align-self:center;justify-self:end;color:var(--gold);writing-mode:vertical-rl;text-orientation:mixed;letter-spacing:.32em;font-size:.8rem;text-transform:uppercase}
+.hero-control{justify-self:start;margin-top:1rem}
+.hero-art{position:absolute;right:4%;bottom:8%;width:min(38vw,420px);height:min(38vw,420px);border-radius:36px;background:rgba(255,255,255,.02) url('../img/isotipo-altum.png') center/contain no-repeat;border:1px solid rgba(230,211,126,.14);box-shadow:var(--shadow)}
+.hero-art::before{content:"";position:absolute;inset:14px;border:1px solid rgba(230,211,126,.16);border-radius:30px}
+.hero-art .pillar{display:none}
+.slide{min-height:380px}
+.slide .eyebrow{display:inline-flex;align-items:center;gap:12px;padding:.9rem 1.2rem;border:1px solid rgba(230,211,126,.18);border-radius:999px;background:rgba(255,255,255,.04);color:var(--gold);backdrop-filter:blur(8px)}
+.slide .eyebrow::before{content:"";width:34px;height:34px;background:url('../img/logo-slogan.png') center/contain no-repeat;display:inline-block;border-radius:10px}
+.dot{width:12px;height:12px;border:1px solid rgba(255,255,255,.44);background:transparent}.dot.active{background:var(--gold);border-color:var(--gold)}
+
+.btn{font-family:"Poppins",sans-serif;font-weight:600;letter-spacing:.02em;border-radius:999px}
+.btn-primary{background:linear-gradient(180deg,#f1df96 0%,#ddc567 100%);color:#11161d;border:1px solid rgba(17,22,29,.06);box-shadow:0 12px 34px rgba(230,211,126,.24)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 40px rgba(230,211,126,.34)}
+.btn-ghost{background:rgba(255,255,255,.06);color:#fff;border:1px solid rgba(255,255,255,.16)}
+.btn-ghost:hover{background:rgba(255,255,255,.12)}
+.link-arrow{color:var(--gold-2);font-weight:600}
+.link-arrow:hover{color:var(--gold)}
+
+.section{position:relative}
+.section.alt{background:linear-gradient(180deg,#faf9f7 0%,#f2efe8 100%)}
+.section-head h2,.about-copy h2,.detail-content h2,.page-hero h1,.contact-card h2,.form-card h2{font-weight:800;letter-spacing:.01em}
+
+.card,.stat-card,.about-panel,.form-card,.contact-card,.sidebar-card,.detail-content,.event-hero-card,.modal-card{background:rgba(255,255,255,.9);border:1px solid rgba(17,22,29,.08);box-shadow:var(--shadow-soft)}
+.card,.team-card,.stat-card{overflow:hidden}
+.area-card,.post-card,.team-card,.stat-card,.form-card,.contact-card,.sidebar-card,.detail-content,.event-hero-card{border-radius:var(--radius)}
+.area-card .inner,.post-card,.team-card,.stat-card,.form-card,.contact-card,.sidebar-card,.detail-content,.event-hero-card{position:relative}
+.area-card::before,.post-card::before,.team-card::before,.sidebar-card::before,.contact-card::before,.form-card::before,.detail-content::before,.event-hero-card::before,.stat-card::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--gold) 0%, rgba(230,211,126,.35) 100%)}
+.area-card::after,.post-card::after,.team-card::after,.contact-card::after,.stat-card::after{content:"";position:absolute;right:-24px;bottom:-24px;width:120px;height:120px;background:url('../img/isotipo-altum.png') center/contain no-repeat;opacity:.06;pointer-events:none}
+.area-card small,.post-meta span:first-child{color:var(--gold-2);font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.area-card h3,.post-card h3,.team-card h3{font-weight:700}
+
+.stats{background:linear-gradient(135deg,#0d1623,#171f2d);color:#fff}
+.stats .section-head h2,.stats .section-head p,.stats .section-head .kicker{color:#fff}
+.stat-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08)}
+.stat-card p{color:rgba(255,255,255,.72)}
+.stat-number{background:linear-gradient(180deg,#fff7cf,var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+
+.about-copy p,.detail-content p,.detail-content li,.contact-card p,.form-card label{color:var(--muted)}
+.about-panel{background:linear-gradient(155deg,#101928,#1b2433);color:#fff;border:1px solid rgba(230,211,126,.12)}
+.about-panel h3{color:var(--gold)}
+.about-panel p{color:rgba(255,255,255,.78)}
+.about::before{width:300px;height:300px;border-color:rgba(230,211,126,.22)}
+
+.page-hero{background:linear-gradient(135deg,#0a111b 0%,#182130 100%);color:#fff;position:relative;overflow:hidden;border-bottom:1px solid rgba(230,211,126,.15)}
+.page-hero::before{content:"";position:absolute;right:4%;top:50%;transform:translateY(-50%);width:min(34vw,380px);height:min(34vw,380px);background:url('../img/isotipo-altum.png') center/contain no-repeat;opacity:.08}
+.page-hero h1{color:#fff;text-transform:uppercase}
+.page-hero .breadcrumbs,.page-hero .breadcrumbs a{color:rgba(255,255,255,.72)}
+.page-hero::after{box-shadow:0 0 0 55px rgba(230,211,126,.03)}
+
+.detail-layout{gap:30px}
+.sidebar-card ul li a{color:var(--ink)}
+.sidebar-card ul li a:hover{color:var(--gold-2)}
+
+.team-card{background:linear-gradient(180deg,rgba(255,255,255,.96),rgba(247,245,240,.96));border:1px solid rgba(17,22,29,.08)}
+.avatar{background:linear-gradient(180deg,#151f2d,#0a111b);color:var(--gold);border:2px solid rgba(230,211,126,.18);font-weight:800}
+.modal{background:rgba(10,17,27,.72);backdrop-filter:blur(10px)}
+.modal-card{border-radius:32px}
+.modal-avatar{background:linear-gradient(180deg,#151f2d,#0a111b);color:var(--gold)}
+.tag{background:rgba(230,211,126,.14);color:#5d4c12;border:1px solid rgba(230,211,126,.2)}
+
+.form-card,.contact-card{background:rgba(255,255,255,.94)}
+.field input,.field textarea,.search-box input{font-family:"Poppins",sans-serif;border:1px solid rgba(17,22,29,.12);border-radius:16px;background:#fff}
+.field input:focus,.field textarea:focus,.search-box input:focus{outline:none;border-color:rgba(198,171,78,.65);box-shadow:0 0 0 4px rgba(230,211,126,.16)}
+.contact-brand-panel{margin:-10px -10px 20px;border-radius:22px;overflow:hidden;border:1px solid rgba(17,22,29,.08);box-shadow:var(--shadow-soft)}
+.contact-brand-panel img{display:block;width:100%;height:auto}
+.responsable-note{padding:0 0 8px;border-bottom:1px solid rgba(17,22,29,.08);margin-bottom:14px}
+.contact-item strong{color:var(--ink)}
+.contact-icon{background:#131b29;color:var(--gold);font-weight:700}
+
+.filter-btn{font-family:"Poppins",sans-serif;background:#fff;border:1px solid rgba(17,22,29,.1)}
+.filter-btn.active,.filter-btn:hover{background:#151f2d;color:#fff;border-color:#151f2d}
+.empty-state{background:#fff;border:1px dashed rgba(17,22,29,.18);border-radius:22px}
+
+.event-hero-card{background:linear-gradient(135deg,#101928,#1c2635);color:#fff;border:1px solid rgba(230,211,126,.12)}
+.event-hero-card p,.event-hero-card .post-meta{color:rgba(255,255,255,.76)}
+.benefit{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);color:#fff}
+
+.footer-cta{position:relative;overflow:hidden;background:linear-gradient(135deg,#0e1623,#172031);color:#fff;border-top:1px solid rgba(230,211,126,.14)}
+.footer-cta::before{content:"";position:absolute;inset:0;background:url('../img/logo-principal.png') right 6% center/320px auto no-repeat;opacity:.08;pointer-events:none}
+.footer-cta h2{max-width:620px;color:#fff;text-transform:uppercase;letter-spacing:.02em}
+.site-footer{background:#0a111b;color:#d2d7dd;border-top:1px solid rgba(230,211,126,.14);position:relative;overflow:hidden}
+.site-footer::before{content:"";position:absolute;right:-90px;bottom:-90px;width:280px;height:280px;background:url('../img/isotipo-altum.png') center/contain no-repeat;opacity:.06;pointer-events:none}
+.site-footer h3{color:var(--gold)}
+.site-footer p,.site-footer li,.site-footer a,.footer-bottom{color:rgba(255,255,255,.74)}
+.site-footer a:hover{color:#fff}
+.socials a{display:inline-grid;place-items:center;width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);color:var(--gold);font-weight:700;text-transform:uppercase}
+.socials a:hover{background:rgba(230,211,126,.12);color:#fff;transform:translateY(-2px)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08)}
+.whatsapp-float{background:linear-gradient(180deg,#1db954,#148043);font-weight:700}
+
+.scroll-progress{background:linear-gradient(90deg,var(--gold),#fff5c5)}
+.cursor-aura{background:radial-gradient(circle,rgba(230,211,126,.18),transparent 68%)}
+.ripple{background:rgba(255,255,255,.28)}
+
+@media (max-width: 1080px){
+  .hero-content{grid-template-columns:1fr;padding:8rem 24px 4.5rem}
+  .hero-side{display:none}
+  .hero-art{position:relative;right:auto;bottom:auto;width:min(72vw,420px);height:min(72vw,420px);margin:18px auto 0}
+  .slide{min-height:auto}
+  .footer-cta::before{background-size:220px auto;background-position:right -20px center}
+}
+@media (max-width: 760px){
+  .brand-mark{width:46px;height:46px;min-width:46px}
+  .brand-text strong{font-size:.92rem;letter-spacing:.09em}
+  .brand-text span{font-size:.63rem;letter-spacing:.18em}
+  .hero{min-height:auto}
+  .hero-content{padding-top:7rem}
+  .hero h1{font-size:clamp(2rem,11vw,3.2rem)}
+  .slide .eyebrow::before{width:26px;height:26px}
+  .page-hero{padding-top:8rem}
+  .footer-cta::before{display:none}
+}

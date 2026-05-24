@@ -4,13 +4,14 @@
    publicaciones, noticias y eventos sin tocar el HTML.
    ========================================================= */
 
+
 window.SITE_CONFIG = {
-  firmName: "Altum Abogados & Asociados",
-  shortName: "Altum Abogados",
-  tagline: "Defensa, estrategia y gestión legal de alto impacto",
-  whatsapp: "51928928767",
-  phone: "(+51) 928 928 767",
-  email: "contacto@altumabogados.com",
+  firmName: "Estudio Jurídico ALTUM Abogados & Asociados",
+  shortName: "ALTUM",
+  tagline: "Comprometidos con tu defensa, elevando la excelencia en cada caso",
+  whatsapp: "51989245203",
+  phone: "+51 989 245 203",
+  email: "servicioslegales.altumlumen@gmail.com",
   address: "Lima, Perú",
   mapUrl: "https://maps.google.com/",
   social: {
@@ -133,26 +134,27 @@ window.AREAS = [
   }
 ];
 
+
 window.STAFF = [
+  {
+    id: "oscar-moreno",
+    name: "Oscar Felipe Moreno Tupia",
+    role: "Responsable del Estudio Jurídico",
+    area: "Abogado Colegiado · CAL 74763",
+    languages: ["Español"],
+    bio: "Responsable del Estudio Jurídico ALTUM Abogados & Asociados. Abogado colegiado con enfoque en defensa técnica, asesoría estratégica y acompañamiento jurídico integral.",
+    education: ["Abogado Colegiado", "CAL 74763", "Dirección jurídica", "Estrategia legal"],
+    image: "OM"
+  },
   {
     id: "jean-vargas",
     name: "Jeanfranco M. Vargas Luque",
-    role: "Director Legal y Consultor en Gestión Pública",
+    role: "Consultor Legal y de Gestión Pública",
     area: "Derecho Administrativo, Gestión Pública y Contrataciones",
     languages: ["Español"],
     bio: "Abogado, contador y consultor en gestión pública, con experiencia en gobiernos locales, procedimientos administrativos, planeamiento, presupuesto, contrataciones y defensa técnica institucional.",
     education: ["Derecho", "Contabilidad", "Gestión Pública", "Proyectos de Inversión"],
     image: "JV"
-  },
-  {
-    id: "franshesca-moreno",
-    name: "Norma E. Franshesca Moreno Mogollón",
-    role: "Gerente de Servicios Comerciales y Cooperación",
-    area: "Alianzas, cooperación institucional y gestión comercial",
-    languages: ["Español"],
-    bio: "Especialista en coordinación comercial, alianzas estratégicas y gestión de relaciones institucionales para proyectos corporativos, educativos y de cooperación.",
-    education: ["Gestión comercial", "Cooperación institucional", "Ventas B2B"],
-    image: "FM"
   },
   {
     id: "asociado-penal",

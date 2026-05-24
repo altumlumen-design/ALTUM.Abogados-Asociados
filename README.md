@@ -74,3 +74,11 @@ Nota: no se incluyen imágenes, textos extensos ni código propietario de la web
 - `assets/css/styles.css`: diseño visual, colores, tarjetas, responsive y animaciones.
 - `assets/js/data.js`: contenido editable del estudio jurídico.
 - `assets/js/app.js`: interacciones, carrusel, modales, filtros y animaciones.
+
+
+PERSONALIZACIÓN ALTUM 2026
+- Fuente base: Poppins
+- Logos incluidos en assets/img
+- Línea gráfica: azul oscuro / dorado / gris institucional
+- Contacto principal: +51 989 245 203
+- Correo: servicioslegales.altumlumen@gmail.com
