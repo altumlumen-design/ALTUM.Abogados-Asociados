@@ -1,0 +1,2 @@
+Coloca aquí tus imágenes propias: logo, fotos de portada, fotos del equipo, noticias o publicaciones.
+Luego actualiza las rutas en assets/js/data.js o en los HTML correspondientes.

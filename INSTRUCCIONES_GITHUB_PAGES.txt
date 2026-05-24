@@ -1,0 +1,61 @@
+INSTRUCCIONES PARA PUBLICAR ESTA WEB EN GITHUB PAGES
+
+1. Descomprime este ZIP en tu computadora.
+2. Entra a la carpeta descomprimida.
+3. Verifica que el archivo index.html esté en el primer nivel de la carpeta.
+4. En GitHub, crea un repositorio nuevo.
+5. Sube TODOS los archivos y carpetas de esta carpeta al repositorio:
+   - index.html
+   - areas.html
+   - area-detalle.html
+   - publicaciones.html
+   - publicacion-detalle.html
+   - noticias.html
+   - noticia-detalle.html
+   - equipo.html
+   - eventos.html
+   - evento-detalle.html
+   - contacto.html
+   - assets/
+   - README.md
+   - .nojekyll
+
+IMPORTANTE:
+No subas la carpeta completa como una subcarpeta. Debes subir el contenido interno.
+El archivo index.html debe verse directamente en la raíz del repositorio.
+
+PUBLICACIÓN EN GITHUB PAGES:
+1. Entra al repositorio.
+2. Ingresa a Settings.
+3. En el menú lateral, entra a Pages.
+4. En Source o Build and deployment, selecciona:
+   - Deploy from a branch
+   - Branch: main
+   - Folder: / root
+5. Presiona Save.
+6. Espera unos minutos.
+7. GitHub mostrará un enlace del tipo:
+   https://tuusuario.github.io/nombre-del-repositorio/
+
+PARA EDITAR INFORMACIÓN:
+La mayoría del contenido editable está en:
+assets/js/data.js
+
+Ahí puedes cambiar:
+- Nombre del estudio jurídico
+- Correo
+- WhatsApp
+- Dirección
+- Áreas legales
+- Abogados/equipo
+- Publicaciones
+- Noticias
+- Eventos
+
+PARA CAMBIAR COLORES Y ESTILO:
+Edita:
+assets/css/styles.css
+
+PARA CAMBIAR INTERACCIONES Y ANIMACIONES:
+Edita:
+assets/js/app.js
