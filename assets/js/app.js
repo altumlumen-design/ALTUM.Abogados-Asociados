@@ -1,3 +1,4 @@
+
 /* =========================================================
    Interacciones del sitio: menú, carrusel, filtros, modales,
    contadores, detalles dinámicos y formulario.
@@ -13,6 +14,43 @@ function eventById(id){ return window.EVENTS.find(e => e.id === id) || window.EV
 function getParam(name){ return new URLSearchParams(location.search).get(name); }
 function initialsFromName(name){ return name.split(' ').filter(Boolean).slice(0,2).map(x=>x[0]).join('').toUpperCase(); }
 function waLink(text='Hola, solicito asesoría legal.'){ return `https://wa.me/${cfg().whatsapp}?text=${encodeURIComponent(text)}`; }
+
+const SITE_IMAGES = {
+  hero: 'assets/img/hero-principal.png',
+  contact: 'assets/img/contacto-consulta.png',
+  pagesBanner: 'assets/img/noticia-jurisprudencia.png',
+  areas: {
+    'defensa-penal-estrategica': 'assets/img/area-penal.png',
+    'administracion-publica': 'assets/img/area-administrativo.png',
+    'penal-tributario-financiero': 'assets/img/area-administrativo.png',
+    'compliance': 'assets/img/area-compliance.png',
+    'derecho-informatico': 'assets/img/area-digital.png',
+    'administrativo-contrataciones': 'assets/img/area-administrativo.png',
+    'litigios-empresariales': 'assets/img/area-corporativo.png',
+    'corporativo': 'assets/img/area-corporativo.png',
+    'arbitral': 'assets/img/area-corporativo.png'
+  },
+  posts: {
+    'reforma-administrativa': 'assets/img/publicacion-analisis.png',
+    'compliance-municipal': 'assets/img/publicacion-analisis.png',
+    'contrataciones-publicas': 'assets/img/publicacion-analisis.png',
+    'prueba-digital': 'assets/img/publicacion-analisis.png'
+  },
+  news: {
+    'casacion-modelo': 'assets/img/noticia-jurisprudencia.png',
+    'norma-legal': 'assets/img/noticia-jurisprudencia.png',
+    'informativo': 'assets/img/noticia-jurisprudencia.png',
+    'proyecto-ley': 'assets/img/noticia-jurisprudencia.png'
+  },
+  events: {
+    'ia-derecho-compliance': 'assets/img/evento-ia-derecho.png',
+    'contrataciones-estado': 'assets/img/evento-ia-derecho.png'
+  }
+};
+function imageFor(kind, id){ return SITE_IMAGES[kind]?.[id] || ''; }
+function cardImageMarkup(src, alt, cls='card-media'){
+  return src ? `<div class="${cls}"><img src="${src}" alt="${alt}"></div>` : '';
+}
 
 function applyConfig(){
   document.title = document.title.replaceAll('Altum Abogados', cfg().shortName);
@@ -30,7 +68,7 @@ function headerBehavior(){
   const update = () => header && header.classList.toggle('scrolled', window.scrollY > 24);
   window.addEventListener('scroll', update); update();
   const page = document.body.dataset.page;
-  $$(`.nav-links a[data-nav], .mobile-panel a[data-nav]`).forEach(a => { if(a.dataset.nav === page) a.classList.add('active'); });
+  $$('.nav-links a[data-nav], .mobile-panel a[data-nav]').forEach(a => { if(a.dataset.nav === page) a.classList.add('active'); });
 }
 
 function mobileMenu(){
@@ -90,7 +128,9 @@ function counters(){
 }
 
 function areaCard(area){
+  const img = imageFor('areas', area.id);
   return `<article class="card area-card image-${area.image} reveal">
+    ${cardImageMarkup(img, area.title)}
     <div class="inner">
       <small>${area.kicker}</small>
       <h3>${area.title}</h3>
@@ -113,6 +153,7 @@ function renderAreaDetail(){
   $('[data-page-kicker]').textContent = area.kicker;
   target.innerHTML = `<div class="detail-layout">
     <article class="detail-content">
+      ${cardImageMarkup(imageFor('areas', area.id), area.title, 'detail-media')}
       <p class="eyebrow">${area.kicker}</p>
       <h2>${area.title}</h2>
       <p>${area.excerpt}</p>
@@ -137,19 +178,25 @@ function renderPosts(type='posts'){
   const search = $('[data-search]');
   let active = 'Todos';
   const drawFilters = () => {
-    if(filterWrap) filterWrap.innerHTML = categories.map(c => `<button class="filter-btn ${c===active?'active':''}" data-filter="${c}">${c}</button>`).join('') + (search ? '' : '');
+    if(filterWrap) filterWrap.innerHTML = categories.map(c => `<button class="filter-btn ${c===active?'active':''}" data-filter="${c}">${c}</button>`).join('');
     $$('[data-filter]').forEach(btn => btn.addEventListener('click', () => { active = btn.dataset.filter; draw(); }));
   };
   const draw = () => {
     drawFilters();
     const q = (search?.value || '').toLowerCase();
     const items = source.filter(p => (active === 'Todos' || p.type === active) && (!q || (p.title + p.excerpt + p.type).toLowerCase().includes(q)));
-    target.innerHTML = items.length ? items.map(p => `<article class="card post-card reveal">
-      <div class="post-meta"><span>${p.type}</span><span>•</span><span>${p.date}</span></div>
-      <h3>${p.title}</h3>
-      <p>${p.excerpt}</p>
-      <a class="link-arrow" href="${detailPage}?id=${p.id}">${type==='news'?'Descargar / ver':'Ver detalle'}</a>
-    </article>`).join('') : `<div class="empty-state">No se encontraron resultados</div>`;
+    target.innerHTML = items.length ? items.map(p => {
+      const img = imageFor(type === 'news' ? 'news' : 'posts', p.id);
+      return `<article class="card post-card reveal">
+        ${cardImageMarkup(img, p.title)}
+        <div class="post-body">
+          <div class="post-meta"><span>${p.type}</span><span>•</span><span>${p.date}</span></div>
+          <h3>${p.title}</h3>
+          <p>${p.excerpt}</p>
+          <a class="link-arrow" href="${detailPage}?id=${p.id}">${type==='news'?'Descargar / ver':'Ver detalle'}</a>
+        </div>
+      </article>`;
+    }).join('') : `<div class="empty-state">No se encontraron resultados</div>`;
     revealOnScroll();
   };
   search?.addEventListener('input', draw);
@@ -163,6 +210,7 @@ function renderPublicationDetail(kind='post'){
   $('[data-page-kicker]').textContent = item.type;
   target.innerHTML = `<div class="detail-layout">
     <article class="detail-content">
+      ${cardImageMarkup(imageFor(kind === 'news' ? 'news' : 'posts', item.id), item.title, 'detail-media')}
       <p class="eyebrow">${item.type} · ${item.date}</p>
       <h2>${item.title}</h2>
       <p>${item.excerpt}</p>
@@ -181,7 +229,7 @@ function renderTeam(){
   const target = $('[data-render="team"]');
   if(!target) return;
   target.innerHTML = window.STAFF.map(p => `<article class="team-card reveal" data-staff="${p.id}">
-    <div class="avatar">${p.image || initialsFromName(p.name)}</div>
+    <div class="avatar ${p.photo ? 'photo-avatar' : ''}">${p.photo ? `<img src="${p.photo}" alt="${p.name}">` : (p.image || initialsFromName(p.name))}</div>
     <div class="team-info"><h3>${p.name}</h3><p>${p.role}</p><p>${p.area}</p></div>
   </article>`).join('');
   $$('[data-staff]').forEach(card => card.addEventListener('click', () => openStaff(card.dataset.staff)));
@@ -191,7 +239,7 @@ function openStaff(id){
   const p = window.STAFF.find(x => x.id === id);
   const modal = $('#staff-modal');
   if(!p || !modal) return;
-  $('.modal-avatar', modal).textContent = p.image || initialsFromName(p.name);
+  $('.modal-avatar', modal).innerHTML = p.photo ? `<img src="${p.photo}" alt="${p.name}">` : (p.image || initialsFromName(p.name)); $('.modal-avatar', modal).classList.toggle('modal-photo', !!p.photo);
   $('.modal-info', modal).innerHTML = `<h3>${p.name}</h3><p><strong>${p.role}</strong></p><p>${p.area}</p><h4>Idiomas:</h4><div class="tag-list">${p.languages.map(x=>`<span class="tag">${x}</span>`).join('')}</div><h4>Biografía:</h4><p>${p.bio}</p><h4>Formación / enfoque:</h4><div class="tag-list">${p.education.map(x=>`<span class="tag">${x}</span>`).join('')}</div>`;
   modal.classList.add('open');
 }
@@ -207,9 +255,12 @@ function renderEvents(){
   const target = $('[data-render="events"]');
   if(!target) return;
   target.innerHTML = window.EVENTS.map(e => `<article class="card post-card reveal">
-    <div class="post-meta"><span>${e.status}</span><span>•</span><span>${e.date}</span></div>
-    <h3>${e.title}</h3><p>${e.excerpt}</p>
-    <a class="link-arrow" href="evento-detalle.html?id=${e.id}">Ver detalle</a>
+    ${cardImageMarkup(imageFor('events', e.id), e.title)}
+    <div class="post-body">
+      <div class="post-meta"><span>${e.status}</span><span>•</span><span>${e.date}</span></div>
+      <h3>${e.title}</h3><p>${e.excerpt}</p>
+      <a class="link-arrow" href="evento-detalle.html?id=${e.id}">Ver detalle</a>
+    </div>
   </article>`).join('');
   revealOnScroll();
 }
@@ -220,6 +271,7 @@ function renderEventDetail(){
   $('[data-page-title]').textContent = e.title;
   $('[data-page-kicker]').textContent = e.date;
   target.innerHTML = `<div class="event-hero-card">
+    ${cardImageMarkup(imageFor('events', e.id), e.title, 'event-media')}
     <div class="post-meta"><span>${e.status}</span><span>•</span><span>${e.hours}</span></div>
     <h2>${e.title}</h2>
     <p>${e.excerpt}</p>

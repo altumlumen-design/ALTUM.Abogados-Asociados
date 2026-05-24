@@ -82,3 +82,9 @@ PERSONALIZACIÓN ALTUM 2026
 - Línea gráfica: azul oscuro / dorado / gris institucional
 - Contacto principal: +51 989 245 203
 - Correo: servicioslegales.altumlumen@gmail.com
+
+
+Se incluyó un paquete de imágenes hiperrealistas en assets/img. Ver MAPA_DE_IMAGENES.txt
+
+
+ACTUALIZACIÓN FINAL: se añadieron retratos realistas del equipo en assets/img y se integraron al módulo de Equipo.

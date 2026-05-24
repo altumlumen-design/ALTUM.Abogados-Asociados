@@ -1,0 +1,28 @@
+
+MAPA DE IMÁGENES ALTUM
+======================
+assets/img/hero-principal.png           -> Hero principal de la portada
+assets/img/area-penal.png               -> Tarjeta y detalle de Defensa Penal Estratégica
+assets/img/area-administrativo.png      -> Áreas de Administración Pública, Penal Tributario y Contrataciones
+assets/img/area-compliance.png          -> Área de Compliance y Preventivo Penal
+assets/img/area-digital.png             -> Área de Derecho Informático y Ciberdelito
+assets/img/area-corporativo.png         -> Áreas Corporativo, Arbitral y Litigios Empresariales
+assets/img/noticia-jurisprudencia.png   -> Noticias y fondo general interno
+assets/img/publicacion-analisis.png     -> Publicaciones
+assets/img/evento-ia-derecho.png        -> Eventos y detalle de eventos
+assets/img/contacto-consulta.png        -> Imagen institucional para contacto
+
+ARCHIVOS MODIFICADOS
+- assets/css/styles.css
+- assets/js/app.js
+- contacto.html
+
+Si deseas reemplazar una imagen, conserva el mismo nombre de archivo para evitar editar código.
+
+
+FOTOS DE EQUIPO
+================
+assets/img/team-jeanfranco.png      -> Tarjeta y modal de Jeanfranco M. Vargas Luque
+assets/img/team-asociado-senior.png -> Tarjeta y modal de Asociado Senior Penal
+assets/img/team-oscar.png           -> Tarjeta y modal de Oscar Felipe Moreno Tupia
+El cuarto perfil se mantiene editable y puede dejarse sin foto o reemplazarse conservando la estructura del archivo data.js.

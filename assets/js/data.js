@@ -135,17 +135,8 @@ window.AREAS = [
 ];
 
 
+
 window.STAFF = [
-  {
-    id: "oscar-moreno",
-    name: "Oscar Felipe Moreno Tupia",
-    role: "Responsable del Estudio Jurídico",
-    area: "Abogado Colegiado · CAL 74763",
-    languages: ["Español"],
-    bio: "Responsable del Estudio Jurídico ALTUM Abogados & Asociados. Abogado colegiado con enfoque en defensa técnica, asesoría estratégica y acompañamiento jurídico integral.",
-    education: ["Abogado Colegiado", "CAL 74763", "Dirección jurídica", "Estrategia legal"],
-    image: "OM"
-  },
   {
     id: "jean-vargas",
     name: "Jeanfranco M. Vargas Luque",
@@ -154,17 +145,8 @@ window.STAFF = [
     languages: ["Español"],
     bio: "Abogado, contador y consultor en gestión pública, con experiencia en gobiernos locales, procedimientos administrativos, planeamiento, presupuesto, contrataciones y defensa técnica institucional.",
     education: ["Derecho", "Contabilidad", "Gestión Pública", "Proyectos de Inversión"],
-    image: "JV"
-  },
-  {
-    id: "asociado-penal",
-    name: "Asociado Senior Penal",
-    role: "Especialista en Litigación Penal",
-    area: "Defensa Penal Estratégica",
-    languages: ["Español", "Inglés"],
-    bio: "Perfil editable para incorporar a un abogado del equipo. Se recomienda añadir experiencia, estudios, membresías y casos representativos no confidenciales.",
-    education: ["Derecho Penal", "Litigación Oral"],
-    image: "AP"
+    image: "JV",
+    photo: "assets/img/team-jeanfranco.png"
   },
   {
     id: "asociado-corporativo",
@@ -174,7 +156,30 @@ window.STAFF = [
     languages: ["Español"],
     bio: "Perfil editable para abogado corporativo encargado de contratos, cumplimiento, formalización empresarial y soporte preventivo.",
     education: ["Derecho Corporativo", "Compliance"],
-    image: "AC"
+    image: "AC",
+    photo: ""
+  },
+  {
+    id: "asociado-penal",
+    name: "Asociado Senior Penal",
+    role: "Especialista en Litigación Penal",
+    area: "Defensa Penal Estratégica",
+    languages: ["Español", "Inglés"],
+    bio: "Perfil editable para incorporar a un abogado del equipo. Se recomienda añadir experiencia, estudios, membresías y casos representativos no confidenciales.",
+    education: ["Derecho Penal", "Litigación Oral"],
+    image: "AP",
+    photo: "assets/img/team-asociado-senior.png"
+  },
+  {
+    id: "oscar-moreno",
+    name: "Oscar Felipe Moreno Tupia",
+    role: "Responsable del Estudio Jurídico",
+    area: "Abogado Colegiado · CAL 74763",
+    languages: ["Español"],
+    bio: "Responsable del Estudio Jurídico ALTUM Abogados & Asociados. Abogado colegiado con enfoque en defensa técnica, asesoría estratégica y acompañamiento jurídico integral.",
+    education: ["Abogado Colegiado", "CAL 74763", "Dirección jurídica", "Estrategia legal"],
+    image: "OM",
+    photo: "assets/img/team-oscar.png"
   }
 ];
 
