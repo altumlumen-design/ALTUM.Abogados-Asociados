@@ -1,28 +1,30 @@
-
-MAPA DE IMÁGENES ALTUM
+PACK ALTUM V2 REALISTA
 ======================
-assets/img/hero-principal.png           -> Hero principal de la portada
-assets/img/area-penal.png               -> Tarjeta y detalle de Defensa Penal Estratégica
-assets/img/area-administrativo.png      -> Áreas de Administración Pública, Penal Tributario y Contrataciones
-assets/img/area-compliance.png          -> Área de Compliance y Preventivo Penal
-assets/img/area-digital.png             -> Área de Derecho Informático y Ciberdelito
-assets/img/area-corporativo.png         -> Áreas Corporativo, Arbitral y Litigios Empresariales
-assets/img/noticia-jurisprudencia.png   -> Noticias y fondo general interno
-assets/img/publicacion-analisis.png     -> Publicaciones
-assets/img/evento-ia-derecho.png        -> Eventos y detalle de eventos
-assets/img/contacto-consulta.png        -> Imagen institucional para contacto
+Todas las imágenes hiperrealistas han sido optimizadas en formato WEBP para mantener, de ser posible, un peso menor a 1 MB por archivo.
 
-ARCHIVOS MODIFICADOS
-- assets/css/styles.css
-- assets/js/app.js
-- contacto.html
+hero-principal.webp -> 1400x787 | 53.0 KB | calidad WEBP 82
+area-penal.webp -> 1200x800 | 48.5 KB | calidad WEBP 82
+area-administrativo.webp -> 1200x800 | 66.1 KB | calidad WEBP 82
+area-compliance.webp -> 1200x800 | 61.0 KB | calidad WEBP 82
+area-digital.webp -> 1200x800 | 70.6 KB | calidad WEBP 82
+area-corporativo.webp -> 1200x800 | 62.9 KB | calidad WEBP 82
+noticia-jurisprudencia.webp -> 1400x787 | 61.1 KB | calidad WEBP 82
+publicacion-analisis.webp -> 1200x675 | 43.4 KB | calidad WEBP 82
+evento-ia-derecho.webp -> 1400x787 | 37.8 KB | calidad WEBP 82
+contacto-consulta.webp -> 1200x675 | 43.4 KB | calidad WEBP 82
+team-jeanfranco.webp -> 880x1100 | 58.9 KB | calidad WEBP 82
+team-asociado-senior.webp -> 880x1100 | 47.5 KB | calidad WEBP 82
+team-oscar.webp -> 880x1100 | 52.3 KB | calidad WEBP 82
 
-Si deseas reemplazar una imagen, conserva el mismo nombre de archivo para evitar editar código.
-
-
-FOTOS DE EQUIPO
-================
-assets/img/team-jeanfranco.png      -> Tarjeta y modal de Jeanfranco M. Vargas Luque
-assets/img/team-asociado-senior.png -> Tarjeta y modal de Asociado Senior Penal
-assets/img/team-oscar.png           -> Tarjeta y modal de Oscar Felipe Moreno Tupia
-El cuarto perfil se mantiene editable y puede dejarse sin foto o reemplazarse conservando la estructura del archivo data.js.
+UBICACIÓN / USO
+hero-principal.webp -> portada principal
+area-penal.webp -> área de defensa penal
+area-administrativo.webp -> administrativo / contrataciones
+area-compliance.webp -> compliance
+area-digital.webp -> derecho informático
+area-corporativo.webp -> corporativo / arbitral / litigios
+noticia-jurisprudencia.webp -> noticias y banner interno
+publicacion-analisis.webp -> publicaciones
+evento-ia-derecho.webp -> eventos
+contacto-consulta.webp -> contacto
+team-jeanfranco.webp / team-asociado-senior.webp / team-oscar.webp -> equipo

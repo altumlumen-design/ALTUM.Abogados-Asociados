@@ -146,7 +146,7 @@ window.STAFF = [
     bio: "Abogado, contador y consultor en gestión pública, con experiencia en gobiernos locales, procedimientos administrativos, planeamiento, presupuesto, contrataciones y defensa técnica institucional.",
     education: ["Derecho", "Contabilidad", "Gestión Pública", "Proyectos de Inversión"],
     image: "JV",
-    photo: "assets/img/team-jeanfranco.png"
+    photo: "assets/img/team-jeanfranco.webp"
   },
   {
     id: "asociado-corporativo",
@@ -168,7 +168,7 @@ window.STAFF = [
     bio: "Perfil editable para incorporar a un abogado del equipo. Se recomienda añadir experiencia, estudios, membresías y casos representativos no confidenciales.",
     education: ["Derecho Penal", "Litigación Oral"],
     image: "AP",
-    photo: "assets/img/team-asociado-senior.png"
+    photo: "assets/img/team-asociado-senior.webp"
   },
   {
     id: "oscar-moreno",
@@ -179,7 +179,7 @@ window.STAFF = [
     bio: "Responsable del Estudio Jurídico ALTUM Abogados & Asociados. Abogado colegiado con enfoque en defensa técnica, asesoría estratégica y acompañamiento jurídico integral.",
     education: ["Abogado Colegiado", "CAL 74763", "Dirección jurídica", "Estrategia legal"],
     image: "OM",
-    photo: "assets/img/team-oscar.png"
+    photo: "assets/img/team-oscar.webp"
   }
 ];
 

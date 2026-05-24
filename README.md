@@ -88,3 +88,15 @@ Se incluyó un paquete de imágenes hiperrealistas en assets/img. Ver MAPA_DE_IM
 
 
 ACTUALIZACIÓN FINAL: se añadieron retratos realistas del equipo en assets/img y se integraron al módulo de Equipo.
+
+
+VERSIÓN V2 REALISTA
+- Se reemplazaron varias imágenes por escenas más reales y menos futuristas.
+- Se optimizaron a formato WEBP con tope aproximado menor a 1 MB por imagen en la mayoría de casos.
+- Ver MAPA_DE_IMAGENES.txt para detalle.
+
+
+ACTUALIZACIÓN SERVICIOS V3
+- Se habilitaron únicamente las ramas indicadas: Penal, Civil, Inmobiliario y Registral, Constitucional, Administrativo, Laboral, Administración Pública, Contrataciones del Estado y Electoral.
+- Se añadió simbología sobria por cada rama.
+- Se conservaron estructura, diseño base y línea gráfica.

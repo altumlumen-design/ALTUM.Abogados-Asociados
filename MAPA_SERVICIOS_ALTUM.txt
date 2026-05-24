@@ -1,0 +1,26 @@
+SERVICIOS HABILITADOS - ALTUM
+================================
+Se reemplazaron las ramas anteriores por los servicios indicados por el usuario, agregando Derecho Electoral.
+No se realizaron cambios estructurales grandes en la web.
+
+Servicios:
+1. Derecho Penal
+2. Derecho Civil
+3. Derecho Inmobiliario y Registral
+4. Derecho Constitucional
+5. Derecho Administrativo
+6. Derecho Laboral
+7. Administración Pública
+8. Contrataciones del Estado
+9. Derecho Electoral
+
+Imágenes de servicios optimizadas en WEBP:
+- servicio-penal.webp: 1200x800px | 68.1 KB | calidad WEBP 82
+- servicio-civil.webp: 1200x800px | 68.7 KB | calidad WEBP 82
+- servicio-inmobiliario.webp: 1200x800px | 74.9 KB | calidad WEBP 82
+- servicio-constitucional.webp: 1200x800px | 76.1 KB | calidad WEBP 82
+- servicio-administrativo.webp: 1200x800px | 67.8 KB | calidad WEBP 82
+- servicio-laboral.webp: 1200x800px | 68.6 KB | calidad WEBP 82
+- servicio-administracion-publica.webp: 1200x800px | 61.1 KB | calidad WEBP 82
+- servicio-contrataciones.webp: 1200x800px | 74.9 KB | calidad WEBP 82
+- servicio-electoral.webp: 1200x800px | 67.8 KB | calidad WEBP 82

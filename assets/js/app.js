@@ -16,41 +16,58 @@ function initialsFromName(name){ return name.split(' ').filter(Boolean).slice(0,
 function waLink(text='Hola, solicito asesoría legal.'){ return `https://wa.me/${cfg().whatsapp}?text=${encodeURIComponent(text)}`; }
 
 const SITE_IMAGES = {
-  hero: 'assets/img/hero-principal.png',
-  contact: 'assets/img/contacto-consulta.png',
-  pagesBanner: 'assets/img/noticia-jurisprudencia.png',
+  hero: 'assets/img/hero-principal.webp',
+  contact: 'assets/img/contacto-consulta.webp',
+  pagesBanner: 'assets/img/noticia-jurisprudencia.webp',
   areas: {
-    'defensa-penal-estrategica': 'assets/img/area-penal.png',
-    'administracion-publica': 'assets/img/area-administrativo.png',
-    'penal-tributario-financiero': 'assets/img/area-administrativo.png',
-    'compliance': 'assets/img/area-compliance.png',
-    'derecho-informatico': 'assets/img/area-digital.png',
-    'administrativo-contrataciones': 'assets/img/area-administrativo.png',
-    'litigios-empresariales': 'assets/img/area-corporativo.png',
-    'corporativo': 'assets/img/area-corporativo.png',
-    'arbitral': 'assets/img/area-corporativo.png'
+    'derecho-penal': 'assets/img/servicio-penal.webp',
+    'derecho-civil': 'assets/img/servicio-civil.webp',
+    'derecho-inmobiliario-registral': 'assets/img/servicio-inmobiliario.webp',
+    'derecho-constitucional': 'assets/img/servicio-constitucional.webp',
+    'derecho-administrativo': 'assets/img/servicio-administrativo.webp',
+    'derecho-laboral': 'assets/img/servicio-laboral.webp',
+    'administracion-publica': 'assets/img/servicio-administracion-publica.webp',
+    'contrataciones-estado': 'assets/img/servicio-contrataciones.webp',
+    'derecho-electoral': 'assets/img/servicio-electoral.webp'
   },
   posts: {
-    'reforma-administrativa': 'assets/img/publicacion-analisis.png',
-    'compliance-municipal': 'assets/img/publicacion-analisis.png',
-    'contrataciones-publicas': 'assets/img/publicacion-analisis.png',
-    'prueba-digital': 'assets/img/publicacion-analisis.png'
+    'reforma-administrativa': 'assets/img/publicacion-analisis.webp',
+    'compliance-municipal': 'assets/img/publicacion-analisis.webp',
+    'contrataciones-publicas': 'assets/img/publicacion-analisis.webp',
+    'prueba-digital': 'assets/img/publicacion-analisis.webp'
   },
   news: {
-    'casacion-modelo': 'assets/img/noticia-jurisprudencia.png',
-    'norma-legal': 'assets/img/noticia-jurisprudencia.png',
-    'informativo': 'assets/img/noticia-jurisprudencia.png',
-    'proyecto-ley': 'assets/img/noticia-jurisprudencia.png'
+    'casacion-modelo': 'assets/img/noticia-jurisprudencia.webp',
+    'norma-legal': 'assets/img/noticia-jurisprudencia.webp',
+    'informativo': 'assets/img/noticia-jurisprudencia.webp',
+    'proyecto-ley': 'assets/img/noticia-jurisprudencia.webp'
   },
   events: {
-    'ia-derecho-compliance': 'assets/img/evento-ia-derecho.png',
-    'contrataciones-estado': 'assets/img/evento-ia-derecho.png'
+    'ia-derecho-compliance': 'assets/img/evento-ia-derecho.webp',
+    'contrataciones-estado': 'assets/img/evento-ia-derecho.webp'
   }
 };
 function imageFor(kind, id){ return SITE_IMAGES[kind]?.[id] || ''; }
 function cardImageMarkup(src, alt, cls='card-media'){
   return src ? `<div class="${cls}"><img src="${src}" alt="${alt}"></div>` : '';
 }
+
+function areaIconMarkup(name){
+  const icons = {
+    penal: '<path d="M12 3l7 3v5c0 5-3.3 8-7 10-3.7-2-7-5-7-10V6l7-3z"/><path d="M9 12l2 2 4-5"/>',
+    civil: '<path d="M7 3h7l3 3v15H7z"/><path d="M14 3v4h4"/><path d="M9 11h6M9 15h6M9 19h4"/>',
+    inmobiliario: '<path d="M4 20h16"/><path d="M6 20V9l6-5 6 5v11"/><path d="M10 20v-6h4v6"/>',
+    constitucional: '<path d="M4 20h16"/><path d="M5 8h14"/><path d="M7 8v10M12 8v10M17 8v10"/><path d="M12 3l8 5H4z"/>',
+    administrativo: '<path d="M6 3h12v18H6z"/><path d="M9 7h6M9 11h6M9 15h3"/><path d="M15 16l3 3"/>',
+    laboral: '<path d="M16 21v-2a4 4 0 0 0-8 0v2"/><circle cx="12" cy="7" r="4"/><path d="M20 21v-2a4 4 0 0 0-3-3.87"/><path d="M4 21v-2a4 4 0 0 1 3-3.87"/>',
+    publica: '<path d="M3 21h18"/><path d="M5 10h14"/><path d="M6 10V7l6-4 6 4v3"/><path d="M8 10v8M12 10v8M16 10v8"/>',
+    contrataciones: '<rect x="4" y="7" width="16" height="13" rx="2"/><path d="M9 7V5h6v2"/><path d="M8 12h8M8 16h5"/>',
+    electoral: '<path d="M4 10h16v11H4z"/><path d="M8 10V6h8v4"/><path d="M9 6l3-3 3 3"/><path d="M9 15l2 2 4-5"/>'
+  };
+  const path = icons[name] || icons.civil;
+  return `<span class="area-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">${path}</svg></span>`;
+}
+
 
 function applyConfig(){
   document.title = document.title.replaceAll('Altum Abogados', cfg().shortName);
@@ -132,7 +149,7 @@ function areaCard(area){
   return `<article class="card area-card image-${area.image} reveal">
     ${cardImageMarkup(img, area.title)}
     <div class="inner">
-      <small>${area.kicker}</small>
+      <div class="area-heading">${areaIconMarkup(area.icon)}<small>${area.kicker}</small></div>
       <h3>${area.title}</h3>
       <p>${area.excerpt}</p>
       <a class="link-arrow" href="area-detalle.html?id=${area.id}">Ver detalle</a>
@@ -314,7 +331,7 @@ function init(){
   heroSlider();
   counters();
   revealOnScroll();
-  renderAreas(document.body.dataset.page === 'inicio' ? 6 : undefined);
+  renderAreas();
   renderAreaDetail();
   renderPosts('posts');
   renderPosts('news');
