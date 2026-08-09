@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://altumlumen-design.github.io/ALTUM.Abogados-Asociados/sitemap.xml

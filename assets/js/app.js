@@ -1,471 +1,168 @@
+(() => {
+  const cfg = window.SITE_CONFIG || {};
+  const $ = (s, c=document) => c.querySelector(s);
+  const $$ = (s, c=document) => [...c.querySelectorAll(s)];
+  const escapeHtml = (v='') => String(v).replace(/[&<>'"]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#039;','"':'&quot;'}[m]));
+  const param = name => new URLSearchParams(location.search).get(name);
 
-/* =========================================================
-   Interacciones del sitio: menú, carrusel, filtros, modales,
-   contadores, detalles dinámicos y formulario.
-   ========================================================= */
-const $ = (selector, scope=document) => scope.querySelector(selector);
-const $$ = (selector, scope=document) => [...scope.querySelectorAll(selector)];
-
-function cfg(){ return window.SITE_CONFIG; }
-function areaById(id){ return window.AREAS.find(a => a.id === id) || window.AREAS[0]; }
-function postById(id){ return window.POSTS.find(p => p.id === id) || window.POSTS[0]; }
-function newsById(id){ return window.NEWS.find(p => p.id === id) || window.NEWS[0]; }
-function eventById(id){ return window.EVENTS.find(e => e.id === id) || window.EVENTS[0]; }
-function getParam(name){ return new URLSearchParams(location.search).get(name); }
-function initialsFromName(name){ return name.split(' ').filter(Boolean).slice(0,2).map(x=>x[0]).join('').toUpperCase(); }
-function waLink(text='Hola, solicito asesoría legal.'){ return `https://wa.me/${cfg().whatsapp}?text=${encodeURIComponent(text)}`; }
-
-const SITE_IMAGES = {
-  hero: 'assets/img/hero-principal.webp',
-  contact: 'assets/img/contacto-consulta.webp',
-  pagesBanner: 'assets/img/noticia-jurisprudencia.webp',
-  areas: {
-    'derecho-penal': 'assets/img/servicio-penal.webp',
-    'derecho-civil': 'assets/img/servicio-civil.webp',
-    'derecho-inmobiliario-registral': 'assets/img/servicio-inmobiliario.webp',
-    'derecho-constitucional': 'assets/img/servicio-constitucional.webp',
-    'derecho-administrativo': 'assets/img/servicio-administrativo.webp',
-    'derecho-laboral': 'assets/img/servicio-laboral.webp',
-    'administracion-publica': 'assets/img/servicio-administracion-publica.webp',
-    'contrataciones-estado': 'assets/img/servicio-contrataciones.webp',
-    'derecho-electoral': 'assets/img/servicio-electoral.webp'
-  },
-  posts: {
-    'reforma-administrativa': 'assets/img/publicacion-analisis.webp',
-    'compliance-municipal': 'assets/img/publicacion-analisis.webp',
-    'contrataciones-publicas': 'assets/img/publicacion-analisis.webp',
-    'prueba-digital': 'assets/img/publicacion-analisis.webp'
-  },
-  news: {
-    'casacion-modelo': 'assets/img/noticia-jurisprudencia.webp',
-    'norma-legal': 'assets/img/noticia-jurisprudencia.webp',
-    'informativo': 'assets/img/noticia-jurisprudencia.webp',
-    'proyecto-ley': 'assets/img/noticia-jurisprudencia.webp'
-  },
-  events: {
-    'ia-derecho-compliance': 'assets/img/evento-ia-derecho.webp',
-    'contrataciones-estado': 'assets/img/evento-ia-derecho.webp'
-  }
-};
-function imageFor(kind, id){ return SITE_IMAGES[kind]?.[id] || ''; }
-function cardImageMarkup(src, alt, cls='card-media'){
-  return src ? `<div class="${cls}"><img src="${src}" alt="${alt}"></div>` : '';
-}
-
-function areaIconMarkup(name){
-  const icons = {
-    penal: '<path d="M12 3l7 3v5c0 5-3.3 8-7 10-3.7-2-7-5-7-10V6l7-3z"/><path d="M9 12l2 2 4-5"/>',
-    civil: '<path d="M7 3h7l3 3v15H7z"/><path d="M14 3v4h4"/><path d="M9 11h6M9 15h6M9 19h4"/>',
-    inmobiliario: '<path d="M4 20h16"/><path d="M6 20V9l6-5 6 5v11"/><path d="M10 20v-6h4v6"/>',
-    constitucional: '<path d="M4 20h16"/><path d="M5 8h14"/><path d="M7 8v10M12 8v10M17 8v10"/><path d="M12 3l8 5H4z"/>',
-    administrativo: '<path d="M6 3h12v18H6z"/><path d="M9 7h6M9 11h6M9 15h3"/><path d="M15 16l3 3"/>',
-    laboral: '<path d="M16 21v-2a4 4 0 0 0-8 0v2"/><circle cx="12" cy="7" r="4"/><path d="M20 21v-2a4 4 0 0 0-3-3.87"/><path d="M4 21v-2a4 4 0 0 1 3-3.87"/>',
-    publica: '<path d="M3 21h18"/><path d="M5 10h14"/><path d="M6 10V7l6-4 6 4v3"/><path d="M8 10v8M12 10v8M16 10v8"/>',
-    contrataciones: '<rect x="4" y="7" width="16" height="13" rx="2"/><path d="M9 7V5h6v2"/><path d="M8 12h8M8 16h5"/>',
-    electoral: '<path d="M4 10h16v11H4z"/><path d="M8 10V6h8v4"/><path d="M9 6l3-3 3 3"/><path d="M9 15l2 2 4-5"/>'
-  };
-  const path = icons[name] || icons.civil;
-  return `<span class="area-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">${path}</svg></span>`;
-}
-
-
-function applyConfig(){
-  document.title = document.title.replaceAll('Altum Abogados', cfg().shortName);
-  $$('[data-firm]').forEach(el => el.textContent = cfg().firmName);
-  $$('[data-short]').forEach(el => el.textContent = cfg().shortName);
-  $$('[data-phone]').forEach(el => el.textContent = cfg().phone);
-  $$('[data-email]').forEach(el => el.textContent = cfg().email);
-  $$('[data-address]').forEach(el => el.textContent = cfg().address);
-  $$('[data-wa]').forEach(el => el.setAttribute('href', waLink(el.dataset.wa || 'Hola, solicito asesoría legal.')));
-  $$('[data-map]').forEach(el => el.setAttribute('href', cfg().mapUrl));
-}
-
-function headerBehavior(){
-  const header = $('.site-header');
-  const update = () => header && header.classList.toggle('scrolled', window.scrollY > 24);
-  window.addEventListener('scroll', update); update();
-  const page = document.body.dataset.page;
-  $$('.nav-links a[data-nav], .mobile-panel a[data-nav]').forEach(a => { if(a.dataset.nav === page) a.classList.add('active'); });
-}
-
-function mobileMenu(){
-  const panel = $('.mobile-panel');
-  $('.menu-toggle')?.addEventListener('click', () => panel.classList.add('open'));
-  $('.close-menu')?.addEventListener('click', () => panel.classList.remove('open'));
-  $$('.mobile-panel a').forEach(a => a.addEventListener('click', () => panel.classList.remove('open')));
-}
-
-function preloader(){
-  const loader = $('.preloader');
-  setTimeout(() => loader?.classList.add('hidden'), 450);
-}
-
-function revealOnScroll(){
-  const items = $$('.reveal');
-  if(!items.length) return;
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } });
-  }, {threshold:.16});
-  items.forEach(i => io.observe(i));
-}
-
-function heroSlider(){
-  const slides = $$('.slide');
-  const dots = $$('.dot');
-  if(!slides.length) return;
-  let index = 0;
-  const show = (i) => {
-    index = i % slides.length;
-    slides.forEach((s, k) => s.classList.toggle('active', k === index));
-    dots.forEach((d, k) => d.classList.toggle('active', k === index));
-  };
-  dots.forEach((d,k) => d.addEventListener('click', () => show(k)));
-  setInterval(() => show(index + 1), 6500);
-}
-
-function counters(){
-  const nums = $$('.stat-number[data-count]');
-  if(!nums.length) return;
-  const animate = (el) => {
-    const target = +el.dataset.count;
-    const suffix = el.dataset.suffix || '';
-    const duration = 1200;
-    const start = performance.now();
-    const tick = (now) => {
-      const progress = Math.min((now - start) / duration, 1);
-      el.textContent = Math.round(target * progress) + suffix;
-      if(progress < 1) requestAnimationFrame(tick);
-    };
-    requestAnimationFrame(tick);
-  };
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => { if(e.isIntersecting){ animate(e.target); io.unobserve(e.target); } });
-  }, {threshold:.5});
-  nums.forEach(n => io.observe(n));
-}
-
-function areaCard(area){
-  const img = imageFor('areas', area.id);
-  return `<article class="card area-card image-${area.image} reveal">
-    ${cardImageMarkup(img, area.title)}
-    <div class="inner">
-      <div class="area-heading">${areaIconMarkup(area.icon)}<small>${area.kicker}</small></div>
-      <h3>${area.title}</h3>
-      <p>${area.excerpt}</p>
-      <a class="link-arrow" href="area-detalle.html?id=${area.id}">Ver detalle</a>
-    </div>
-  </article>`;
-}
-function renderAreas(limit){
-  const target = $('[data-render="areas"]');
-  if(!target) return;
-  target.innerHTML = window.AREAS.slice(0, limit || window.AREAS.length).map(areaCard).join('');
-  revealOnScroll();
-}
-function renderAreaDetail(){
-  const target = $('[data-render="area-detail"]');
-  if(!target) return;
-  const area = areaById(getParam('id'));
-  $('[data-page-title]').textContent = area.title;
-  $('[data-page-kicker]').textContent = area.kicker;
-  target.innerHTML = `<div class="detail-layout">
-    <article class="detail-content">
-      ${cardImageMarkup(imageFor('areas', area.id), area.title, 'detail-media')}
-      <p class="eyebrow">${area.kicker}</p>
-      <h2>${area.title}</h2>
-      <p>${area.excerpt}</p>
-      ${area.details.map(d => `<h3>${d.title}</h3><p>${d.text}</p>`).join('')}
-    </article>
-    <aside class="sidebar-card">
-      <h3>Solicita una evaluación</h3>
-      <p>Podemos revisar el caso, ordenar documentación y proponer una estrategia inicial.</p>
-      <ul>${window.AREAS.slice(0,5).map(a => `<li><a href="area-detalle.html?id=${a.id}">${a.title}</a></li>`).join('')}</ul>
-      <a class="btn btn-primary" data-wa href="${waLink('Hola, solicito asesoría en ' + area.title)}">Solicitar asesoría</a>
-    </aside>
-  </div>`;
-}
-
-function renderPosts(type='posts'){
-  const target = $(`[data-render="${type}"]`);
-  if(!target) return;
-  const source = type === 'news' ? window.NEWS : window.POSTS;
-  const detailPage = type === 'news' ? 'noticia-detalle.html' : 'publicacion-detalle.html';
-  const categories = ['Todos', ...new Set(source.map(p => p.type))];
-  const filterWrap = $('[data-filters]');
-  const search = $('[data-search]');
-  let active = 'Todos';
-  const drawFilters = () => {
-    if(filterWrap) filterWrap.innerHTML = categories.map(c => `<button class="filter-btn ${c===active?'active':''}" data-filter="${c}">${c}</button>`).join('');
-    $$('[data-filter]').forEach(btn => btn.addEventListener('click', () => { active = btn.dataset.filter; draw(); }));
-  };
-  const draw = () => {
-    drawFilters();
-    const q = (search?.value || '').toLowerCase();
-    const items = source.filter(p => (active === 'Todos' || p.type === active) && (!q || (p.title + p.excerpt + p.type).toLowerCase().includes(q)));
-    target.innerHTML = items.length ? items.map(p => {
-      const img = imageFor(type === 'news' ? 'news' : 'posts', p.id);
-      return `<article class="card post-card reveal">
-        ${cardImageMarkup(img, p.title)}
-        <div class="post-body">
-          <div class="post-meta"><span>${p.type}</span><span>•</span><span>${p.date}</span></div>
-          <h3>${p.title}</h3>
-          <p>${p.excerpt}</p>
-          <a class="link-arrow" href="${detailPage}?id=${p.id}">${type==='news'?'Descargar / ver':'Ver detalle'}</a>
-        </div>
-      </article>`;
-    }).join('') : `<div class="empty-state">No se encontraron resultados</div>`;
-    revealOnScroll();
-  };
-  search?.addEventListener('input', draw);
-  draw();
-}
-function renderPublicationDetail(kind='post'){
-  const target = $('[data-render="publication-detail"]');
-  if(!target) return;
-  const item = kind === 'news' ? newsById(getParam('id')) : postById(getParam('id'));
-  $('[data-page-title]').textContent = item.title;
-  $('[data-page-kicker]').textContent = item.type;
-  target.innerHTML = `<div class="detail-layout">
-    <article class="detail-content">
-      ${cardImageMarkup(imageFor(kind === 'news' ? 'news' : 'posts', item.id), item.title, 'detail-media')}
-      <p class="eyebrow">${item.type} · ${item.date}</p>
-      <h2>${item.title}</h2>
-      <p>${item.excerpt}</p>
-      <h3>Desarrollo</h3>
-      <p>${item.body || 'Ficha editable para ampliar contenido, adjuntar archivo, agregar sumilla o colocar enlace de descarga.'}</p>
-    </article>
-    <aside class="sidebar-card">
-      <h3>${kind==='news'?'Biblioteca legal':'Publicaciones recientes'}</h3>
-      <p>Actualiza estos contenidos desde <strong>assets/js/data.js</strong>.</p>
-      <a class="btn btn-primary" href="${kind==='news'?'noticias.html':'publicaciones.html'}">Volver al listado</a>
-    </aside>
-  </div>`;
-}
-
-function renderTeam(){
-  const target = $('[data-render="team"]');
-  if(!target) return;
-  target.innerHTML = window.STAFF.map(p => `<article class="team-card reveal" data-staff="${p.id}">
-    <div class="avatar ${p.photo ? 'photo-avatar' : ''}">${p.photo ? `<img src="${p.photo}" alt="${p.name}">` : (p.image || initialsFromName(p.name))}</div>
-    <div class="team-info"><h3>${p.name}</h3><p>${p.role}</p><p>${p.area}</p></div>
-  </article>`).join('');
-  $$('[data-staff]').forEach(card => card.addEventListener('click', () => openStaff(card.dataset.staff)));
-  revealOnScroll();
-}
-function openStaff(id){
-  const p = window.STAFF.find(x => x.id === id);
-  const modal = $('#staff-modal');
-  if(!p || !modal) return;
-  $('.modal-avatar', modal).innerHTML = p.photo ? `<img src="${p.photo}" alt="${p.name}">` : (p.image || initialsFromName(p.name)); $('.modal-avatar', modal).classList.toggle('modal-photo', !!p.photo);
-  $('.modal-info', modal).innerHTML = `<h3>${p.name}</h3><p><strong>${p.role}</strong></p><p>${p.area}</p><h4>Idiomas:</h4><div class="tag-list">${p.languages.map(x=>`<span class="tag">${x}</span>`).join('')}</div><h4>Biografía:</h4><p>${p.bio}</p><h4>Formación / enfoque:</h4><div class="tag-list">${p.education.map(x=>`<span class="tag">${x}</span>`).join('')}</div>`;
-  modal.classList.add('open');
-}
-function staffModal(){
-  const modal = $('#staff-modal');
-  if(!modal) return;
-  $('.modal-close', modal)?.addEventListener('click', () => modal.classList.remove('open'));
-  modal.addEventListener('click', e => { if(e.target === modal) modal.classList.remove('open'); });
-  document.addEventListener('keydown', e => { if(e.key === 'Escape') modal.classList.remove('open'); });
-}
-
-function renderEvents(){
-  const target = $('[data-render="events"]');
-  if(!target) return;
-  target.innerHTML = window.EVENTS.map(e => `<article class="card post-card reveal">
-    ${cardImageMarkup(imageFor('events', e.id), e.title)}
-    <div class="post-body">
-      <div class="post-meta"><span>${e.status}</span><span>•</span><span>${e.date}</span></div>
-      <h3>${e.title}</h3><p>${e.excerpt}</p>
-      <a class="link-arrow" href="evento-detalle.html?id=${e.id}">Ver detalle</a>
-    </div>
-  </article>`).join('');
-  revealOnScroll();
-}
-function renderEventDetail(){
-  const target = $('[data-render="event-detail"]');
-  if(!target) return;
-  const e = eventById(getParam('id'));
-  $('[data-page-title]').textContent = e.title;
-  $('[data-page-kicker]').textContent = e.date;
-  target.innerHTML = `<div class="event-hero-card">
-    ${cardImageMarkup(imageFor('events', e.id), e.title, 'event-media')}
-    <div class="post-meta"><span>${e.status}</span><span>•</span><span>${e.hours}</span></div>
-    <h2>${e.title}</h2>
-    <p>${e.excerpt}</p>
-    <div class="benefits">${e.benefits.map(b=>`<div class="benefit">✓ ${b}</div>`).join('')}</div>
-  </div>
-  <section class="section"><div class="wrap detail-layout">
-    <article class="detail-content">
-      <h3>Certificación</h3><p>${e.certification}</p>
-      <h3>Fechas y duración</h3><ul>${e.schedule.map(x=>`<li>${x}</li>`).join('')}</ul>
-      <h3>Temario</h3><ul>${e.topics.map(x=>`<li>${x}</li>`).join('')}</ul>
-      <h3>Ponentes</h3><ul>${e.speakers.map(x=>`<li>${x}</li>`).join('')}</ul>
-      <h3>Costo</h3><p>${e.price}</p>
-    </article>
-    <aside class="sidebar-card"><h3>Inscríbete vía WhatsApp</h3><p>Solicita información, medios de pago y confirmación de vacante.</p><a class="btn btn-primary" href="${waLink(e.whatsappText)}">Inscribirme</a></aside>
-  </div></section>`;
-}
-
-function contactForm(){
-  const form = $('#contact-form');
-  const modal = $('#success-modal');
-  if(!form) return;
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    const data = Object.fromEntries(new FormData(form).entries());
-    if(!data.nombre || !data.telefono || !data.email){
-      alert('Completa nombres, teléfono y correo electrónico.');
-      return;
-    }
-    modal?.classList.add('open');
-    form.reset();
-  });
-  modal?.addEventListener('click', e => { if(e.target === modal || e.target.matches('[data-close]')) modal.classList.remove('open'); });
-}
-
-function init(){
-  applyConfig();
-  preloader();
-  headerBehavior();
-  mobileMenu();
-  heroSlider();
-  counters();
-  revealOnScroll();
-  renderAreas();
-  renderAreaDetail();
-  renderPosts('posts');
-  renderPosts('news');
-  renderPublicationDetail(document.body.dataset.page === 'noticia-detalle' ? 'news' : 'post');
-  renderTeam();
-  staffModal();
-  renderEvents();
-  renderEventDetail();
-  contactForm();
-}
-
-document.addEventListener('DOMContentLoaded', init);
-
-/* =========================================================
-   CAPA ARTÍSTICA V2 — INTERACCIONES TRANSVERSALES
-   ========================================================= */
-(function(){
-  function q(sel, root=document){ return root.querySelector(sel); }
-  function qa(sel, root=document){ return [...root.querySelectorAll(sel)]; }
-
-  function injectMotionLayer(){
-    if(!q('.scroll-progress')){
-      const bar = document.createElement('div');
-      bar.className = 'scroll-progress';
-      document.body.prepend(bar);
-    }
-    if(!q('.cursor-aura')){
-      const aura = document.createElement('div');
-      aura.className = 'cursor-aura';
-      document.body.appendChild(aura);
-    }
+  function hydrateConfig(){
+    $$('[data-firm]').forEach(el=>el.textContent=cfg.firmName || 'ALTUM Abogados & Asociados');
+    $$('[data-short]').forEach(el=>el.textContent=cfg.shortName || 'ALTUM Abogados & Asociados');
+    $$('[data-phone]').forEach(el=>el.textContent=cfg.phone || '');
+    $$('[data-email]').forEach(el=>el.textContent=cfg.email || '');
+    $$('[data-address]').forEach(el=>el.textContent=cfg.address || 'Lima, Perú');
+    $$('[data-year]').forEach(el=>el.textContent=new Date().getFullYear());
+    $$('[data-wa]').forEach(el=>{
+      const text = encodeURIComponent(el.dataset.waText || 'Hola, quisiera realizar una consulta con ALTUM Abogados & Asociados.');
+      el.href = `https://wa.me/${cfg.whatsapp}?text=${text}`;
+      el.target='_blank'; el.rel='noopener noreferrer';
+    });
+    $$('[data-mail]').forEach(el=>el.href=`mailto:${cfg.email}`);
+    $$('[data-corporate]').forEach(el=>el.href=cfg.corporateUrl);
+    $$('[data-training]').forEach(el=>el.href=cfg.trainingUrl);
   }
 
-  function progressBar(){
-    const bar = q('.scroll-progress');
-    if(!bar) return;
-    const update = () => {
-      const doc = document.documentElement;
-      const max = doc.scrollHeight - doc.clientHeight;
-      const pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
-      bar.style.width = pct + '%';
-    };
-    window.addEventListener('scroll', update, {passive:true});
-    update();
+  function nav(){
+    const header=$('.site-header');
+    const toggle=$('.menu-toggle');
+    const drawer=$('.mobile-drawer');
+    const close=$('.drawer-close');
+    const overlay=$('.drawer-overlay');
+    const open=()=>{drawer?.classList.add('open'); overlay?.classList.add('open'); document.body.classList.add('menu-open'); toggle?.setAttribute('aria-expanded','true')};
+    const shut=()=>{drawer?.classList.remove('open'); overlay?.classList.remove('open'); document.body.classList.remove('menu-open'); toggle?.setAttribute('aria-expanded','false')};
+    toggle?.addEventListener('click',open); close?.addEventListener('click',shut); overlay?.addEventListener('click',shut);
+    $$('.mobile-drawer a').forEach(a=>a.addEventListener('click',shut));
+    const onScroll=()=>header?.classList.toggle('scrolled',scrollY>18);
+    addEventListener('scroll',onScroll,{passive:true}); onScroll();
   }
 
-  function pointerAura(){
-    const aura = q('.cursor-aura');
-    if(!aura || matchMedia('(pointer: coarse)').matches) return;
-    document.body.classList.add('has-pointer');
-    let x = innerWidth/2, y = innerHeight/2, tx=x, ty=y;
-    window.addEventListener('mousemove', e => { tx = e.clientX; ty = e.clientY; }, {passive:true});
-    const loop = () => {
-      x += (tx - x) * .12;
-      y += (ty - y) * .12;
-      aura.style.left = x + 'px';
-      aura.style.top = y + 'px';
-      requestAnimationFrame(loop);
-    };
-    loop();
+  function reveal(){
+    const els=$$('[data-reveal]');
+    if(!('IntersectionObserver' in window)){els.forEach(e=>e.classList.add('is-visible'));return;}
+    const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-visible');io.unobserve(e.target)}}),{threshold:.12,rootMargin:'0px 0px -30px'});
+    els.forEach(el=>io.observe(el));
   }
 
-  function parallaxHero(){
-    const art = q('.hero-art');
-    const pillar = q('.hero-art .pillar');
-    if(!art) return;
-    let ticking = false;
-    const update = () => {
-      const y = window.scrollY || 0;
-      art.style.transform = `translateY(${y * .08}px) scale(1.03)`;
-      if(pillar) pillar.style.setProperty('--y', `${y * .04}px`);
-      ticking = false;
-    };
-    window.addEventListener('scroll', () => {
-      if(!ticking){ requestAnimationFrame(update); ticking = true; }
-    }, {passive:true});
-    update();
+  const arrow=`<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M14 7l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+
+  function practiceCard(p, compact=false){
+    return `<article class="practice-card ${compact?'compact':''}" data-reveal>
+      <a href="area-detalle.html?id=${encodeURIComponent(p.id)}" aria-label="Ver ${escapeHtml(p.title)}">
+        <div class="practice-media"><img src="${escapeHtml(p.image)}" alt="" loading="lazy" decoding="async"><span class="practice-number">${escapeHtml(p.number)}</span></div>
+        <div class="practice-copy"><small>${escapeHtml(p.group)}</small><h3>${escapeHtml(p.title)}</h3><p>${escapeHtml(p.excerpt)}</p><span class="text-link">Ver experiencia ${arrow}</span></div>
+      </a></article>`;
   }
 
-  function splitHeroTitles(){
-    qa('.hero h1').forEach(h => {
-      if(h.dataset.split) return;
-      const words = h.textContent.trim().split(/\s+/);
-      h.innerHTML = words.map(w => `<span class="word">${w}</span>`).join(' ');
-      h.dataset.split = 'true';
+  function renderPractices(){
+    $$('[data-render="practices"]').forEach(box=>{
+      let data=[...(window.PRACTICES||[])];
+      const group=box.dataset.group;
+      if(group) data=data.filter(p=>p.group===group);
+      const limit=Number(box.dataset.limit||0); if(limit) data=data.slice(0,limit);
+      box.innerHTML=data.map(p=>practiceCard(p, box.dataset.compact==='true')).join('');
     });
   }
 
-  function buttonRipples(){
-    qa('.btn').forEach(btn => {
-      btn.addEventListener('click', e => {
-        const rect = btn.getBoundingClientRect();
-        const ripple = document.createElement('span');
-        const size = Math.max(rect.width, rect.height);
-        ripple.className = 'ripple';
-        ripple.style.width = ripple.style.height = size + 'px';
-        ripple.style.left = (e.clientX - rect.left - size/2) + 'px';
-        ripple.style.top = (e.clientY - rect.top - size/2) + 'px';
-        btn.appendChild(ripple);
-        setTimeout(() => ripple.remove(), 700);
+  function renderPracticeIndex(){
+    const box=$('[data-practice-index]'); if(!box) return;
+    const practices=window.PRACTICES||[];
+    box.innerHTML=practices.map(p=>`<a class="practice-index-row" href="area-detalle.html?id=${encodeURIComponent(p.id)}" data-group="${escapeHtml(p.group)}" data-search="${escapeHtml((p.title+' '+p.group+' '+p.focus.join(' ')).toLowerCase())}">
+      <span>${escapeHtml(p.number)}</span><strong>${escapeHtml(p.title)}</strong><small>${escapeHtml(p.group)}</small>${arrow}</a>`).join('');
+    const search=$('#practiceSearch');
+    const filters=$$('[data-practice-filter]');
+    let active='all';
+    const apply=()=>{
+      const q=(search?.value||'').trim().toLowerCase();
+      $$('.practice-index-row',box).forEach(row=>{
+        const okGroup=active==='all'||row.dataset.group===active;
+        const okQ=!q||(row.dataset.search||'').includes(q);
+        row.hidden=!(okGroup&&okQ);
       });
+    };
+    search?.addEventListener('input',apply);
+    filters.forEach(btn=>btn.addEventListener('click',()=>{active=btn.dataset.practiceFilter;filters.forEach(x=>x.classList.toggle('active',x===btn));apply()}));
+  }
+
+  function renderSectors(){
+    const box=$('[data-render="sectors"]'); if(!box) return;
+    box.innerHTML=(window.SECTORS||[]).map((s,i)=>`<article class="sector-item" data-reveal><span>0${i+1}</span><h3>${escapeHtml(s.title)}</h3><p>${escapeHtml(s.text)}</p></article>`).join('');
+  }
+
+  function teamCard(m){
+    return `<article class="team-card" data-reveal><div class="team-photo"><img src="${escapeHtml(m.photo)}" alt="${escapeHtml(m.name)}" loading="lazy" decoding="async"></div><div class="team-copy"><small>${escapeHtml(m.role)}</small><h3>${escapeHtml(m.name)}</h3><p>${escapeHtml(m.area)}</p><button class="team-more" type="button" data-team="${escapeHtml(m.id)}">Ver perfil ${arrow}</button></div></article>`;
+  }
+  function renderTeam(){
+    $$('[data-render="team"]').forEach(box=>{
+      const limit=Number(box.dataset.limit||0); let data=[...(window.STAFF||[])]; if(limit)data=data.slice(0,limit);
+      box.innerHTML=data.map(teamCard).join('');
+    });
+    document.addEventListener('click',e=>{const btn=e.target.closest('[data-team]');if(btn)openTeam(btn.dataset.team)});
+  }
+  function openTeam(id){
+    const m=(window.STAFF||[]).find(x=>x.id===id); const modal=$('#teamModal'); if(!m||!modal)return;
+    $('[data-modal-photo]',modal).src=m.photo; $('[data-modal-photo]',modal).alt=m.name;
+    $('[data-modal-role]',modal).textContent=m.role; $('[data-modal-name]',modal).textContent=m.name; $('[data-modal-area]',modal).textContent=m.area; $('[data-modal-bio]',modal).textContent=m.bio;
+    $('[data-modal-credentials]',modal).innerHTML=(m.credentials||[]).map(c=>`<li>${escapeHtml(c)}</li>`).join('');
+    modal.showModal();
+  }
+  document.addEventListener('click',e=>{if(e.target.matches('[data-modal-close]'))e.target.closest('dialog')?.close()});
+
+  function insightCard(p){return `<article class="insight-card" data-reveal><a href="publicacion-detalle.html?id=${encodeURIComponent(p.id)}"><small>${escapeHtml(p.category)}</small><h3>${escapeHtml(p.title)}</h3><p>${escapeHtml(p.excerpt)}</p><span class="text-link">Leer análisis ${arrow}</span></a></article>`}
+  function renderInsights(){
+    $$('[data-render="insights"]').forEach(box=>{let data=[...(window.INSIGHTS||[])];const limit=Number(box.dataset.limit||0);if(limit)data=data.slice(0,limit);box.innerHTML=data.map(insightCard).join('')});
+  }
+  function renderUpdates(){
+    $$('[data-render="updates"]').forEach(box=>{box.innerHTML=(window.LEGAL_UPDATES||[]).map(n=>`<article class="update-row" data-reveal><small>${escapeHtml(n.category)}</small><h3>${escapeHtml(n.title)}</h3><p>${escapeHtml(n.excerpt)}</p></article>`).join('')});
+  }
+  function renderEvents(){
+    $$('[data-render="events"]').forEach(box=>{box.innerHTML=(window.EVENTS||[]).map(e=>`<article class="event-card" data-reveal><div class="event-image"><img src="${escapeHtml(e.image)}" alt="" loading="lazy"></div><div><small>${escapeHtml(e.status)} · ${escapeHtml(e.date)}</small><h3>${escapeHtml(e.title)}</h3><p>${escapeHtml(e.excerpt)}</p><a class="text-link" href="evento-detalle.html?id=${encodeURIComponent(e.id)}">Ver actividad ${arrow}</a></div></article>`).join('')});
+  }
+
+  function detailPractice(){
+    const root=$('[data-area-detail]'); if(!root)return;
+    const p=(window.PRACTICES||[]).find(x=>x.id===param('id')) || (window.PRACTICES||[])[0]; if(!p)return;
+    document.title=`${p.title} | ALTUM Abogados & Asociados`;
+    $('[data-detail-number]',root).textContent=p.number; $('[data-detail-group]',root).textContent=p.group; $('[data-detail-title]',root).textContent=p.title; $('[data-detail-excerpt]',root).textContent=p.excerpt;
+    const img=$('[data-detail-image]',root); img.src=p.image; img.alt=p.title;
+    $('[data-detail-focus]',root).innerHTML=p.focus.map(x=>`<li>${escapeHtml(x)}</li>`).join('');
+    $('[data-detail-services]',root).innerHTML=p.details.map((x,i)=>`<article class="service-detail" data-reveal><span>0${i+1}</span><h3>${escapeHtml(x.title)}</h3><p>${escapeHtml(x.text)}</p></article>`).join('');
+  }
+
+  function detailInsight(){
+    const root=$('[data-insight-detail]');if(!root)return;
+    const p=(window.INSIGHTS||[]).find(x=>x.id===param('id')) || (window.INSIGHTS||[])[0];if(!p)return;
+    document.title=`${p.title} | ALTUM Abogados & Asociados`;
+    $$('[data-insight-category]',root).forEach(el=>el.textContent=p.category); $('[data-insight-title]',root).textContent=p.title; $('[data-insight-excerpt]',root).textContent=p.excerpt; $('[data-insight-body]',root).textContent=p.body; $('[data-insight-author]',root).textContent=p.author;
+  }
+  function detailUpdate(){
+    const root=$('[data-update-detail]');if(!root)return;
+    const n=(window.LEGAL_UPDATES||[]).find(x=>x.id===param('id')) || (window.LEGAL_UPDATES||[])[0];if(!n)return;
+    $$('[data-update-category]',root).forEach(el=>el.textContent=n.category); $('[data-update-title]',root).textContent=n.title; $('[data-update-excerpt]',root).textContent=n.excerpt;
+  }
+  function detailEvent(){
+    const root=$('[data-event-detail]');if(!root)return;
+    const e=(window.EVENTS||[]).find(x=>x.id===param('id')) || (window.EVENTS||[])[0];if(!e)return;
+    $$('[data-event-status]',root).forEach(el=>el.textContent=e.status); $('[data-event-date]',root).textContent=e.date; $('[data-event-title]',root).textContent=e.title; $('[data-event-excerpt]',root).textContent=e.excerpt;
+    const img=$('[data-event-image]',root);img.src=e.image;img.alt=e.title;
+  }
+
+  function contactForm(){
+    const form=$('#contactForm'); if(!form)return;
+    form.addEventListener('submit',e=>{
+      e.preventDefault();
+      const fd=new FormData(form);
+      const name=(fd.get('nombre')||'').toString().trim(); const matter=(fd.get('asunto')||'Consulta legal').toString().trim(); const phone=(fd.get('telefono')||'').toString().trim(); const msg=(fd.get('mensaje')||'').toString().trim();
+      if(!name||!msg){$('#formNotice').textContent='Completa tu nombre y una breve descripción de la consulta.';return;}
+      const subject=encodeURIComponent(`Consulta web - ${matter}`);
+      const body=encodeURIComponent(`Nombre: ${name}\nTeléfono: ${phone}\n\nConsulta:\n${msg}`);
+      location.href=`mailto:${cfg.email}?subject=${subject}&body=${body}`;
     });
   }
 
-  function tiltCards(){
-    if(matchMedia('(pointer: coarse)').matches) return;
-    qa('.area-card,.post-card,.team-card,.form-card,.contact-card').forEach(card => {
-      card.addEventListener('mousemove', e => {
-        const r = card.getBoundingClientRect();
-        const x = (e.clientX - r.left) / r.width - .5;
-        const y = (e.clientY - r.top) / r.height - .5;
-        card.style.transform = `perspective(900px) rotateX(${y * -4}deg) rotateY(${x * 4}deg) translateY(-6px)`;
-      });
-      card.addEventListener('mouseleave', () => { card.style.transform = ''; });
-    });
+  function activeNav(){
+    const page=document.body.dataset.page;
+    $$(`[data-nav="${page}"]`).forEach(a=>a.classList.add('active'));
   }
 
-  function externalTargetSafety(){
-    qa('a[target="_blank"]').forEach(a => {
-      if(!a.rel) a.rel = 'noopener noreferrer';
-    });
-  }
-
-  function initArt(){
-    injectMotionLayer();
-    splitHeroTitles();
-    progressBar();
-    pointerAura();
-    parallaxHero();
-    buttonRipples();
-    tiltCards();
-    externalTargetSafety();
-  }
-
-  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initArt);
-  else initArt();
+  hydrateConfig(); nav(); activeNav(); renderPractices(); renderPracticeIndex(); renderSectors(); renderTeam(); renderInsights(); renderUpdates(); renderEvents(); detailPractice(); detailInsight(); detailUpdate(); detailEvent(); contactForm(); reveal();
 })();

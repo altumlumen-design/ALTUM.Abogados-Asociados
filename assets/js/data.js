@@ -1,238 +1,189 @@
-/* =========================================================
-   CONFIGURACIÓN GENERAL DEL SITIO
-   Edita este archivo para cambiar datos, áreas, abogados,
-   publicaciones, noticias y eventos sin tocar el HTML.
-   ========================================================= */
-
-
+/* ALTUM Abogados & Asociados · Contenido institucional editable */
 window.SITE_CONFIG = {
   firmName: "Estudio Jurídico ALTUM Abogados & Asociados",
-  shortName: "ALTUM",
-  tagline: "Comprometidos con tu defensa, elevando la excelencia en cada caso",
+  shortName: "ALTUM Abogados & Asociados",
+  tagline: "Estrategia jurídica para decisiones complejas",
   whatsapp: "51989245203",
   phone: "+51 989 245 203",
   email: "servicioslegales.altumlumen@gmail.com",
   address: "Lima, Perú",
-  mapUrl: "https://maps.google.com/",
-  social: {
-    linkedin: "#",
-    twitter: "#",
-    youtube: "#",
-    facebook: "#",
-    instagram: "#"
-  }
+  corporateUrl: "https://altumlumen-design.github.io/Altum-Lumen-S.A.C./",
+  trainingUrl: "https://altumlumen-design.github.io/Altum-Lumen-centro-formacion/"
 };
 
-window.AREAS = [
+window.PRACTICES = [
   {
-    id: "derecho-penal",
-    title: "Derecho Penal",
-    kicker: "Área penal",
-    icon: "penal",
-    excerpt: "Defensa técnica en investigaciones, denuncias, diligencias preliminares, procesos penales y estrategias probatorias.",
-    image: "penal",
-    details: [
-      { title: "Defensa penal integral", text: "Patrocinio desde la etapa preliminar hasta juicio, con ordenamiento documental, teoría del caso y estrategia de defensa." },
-      { title: "Asesoría preventiva", text: "Evaluación de riesgos penales, revisión de antecedentes del caso y preparación para citaciones, declaraciones y diligencias." },
-      { title: "Acompañamiento estratégico", text: "Elaboración de escritos, recursos, solicitudes, defensa en audiencias y coordinación permanente con el cliente." }
+    id:"penal", number:"01", title:"Derecho Penal y Penal Empresarial", group:"Controversias y defensa", image:"assets/img/servicio-penal.webp",
+    excerpt:"Defensa técnica, estrategia probatoria y acompañamiento integral en investigaciones y procesos penales, con especial atención a contingencias empresariales y vinculadas a la función pública.",
+    focus:["Defensa penal integral", "Delitos vinculados a la función pública", "Penal empresarial y patrimonial", "Estrategia probatoria y diligencias"],
+    details:[
+      {title:"Defensa desde la etapa inicial", text:"Evaluación del expediente, teoría del caso, preparación para declaraciones y diligencias, escritos, recursos y defensa en audiencia."},
+      {title:"Función pública y responsabilidad penal", text:"Análisis de imputaciones relacionadas con decisiones administrativas, contratación pública, gestión institucional y ejercicio de función pública."},
+      {title:"Contingencias empresariales", text:"Asesoría a personas y organizaciones frente a riesgos penales derivados de operaciones, relaciones comerciales y hechos patrimoniales."},
+      {title:"Prevención y estrategia documental", text:"Organización de antecedentes, evidencia digital y documental, identificación de riesgos y preparación de respuestas legales."}
     ]
   },
   {
-    id: "derecho-civil",
-    title: "Derecho Civil",
-    kicker: "Contratos y obligaciones",
-    icon: "civil",
-    excerpt: "Asesoría y patrocinio en obligaciones, contratos, indemnizaciones, responsabilidad civil y controversias patrimoniales.",
-    image: "civil",
-    details: [
-      { title: "Contratos y obligaciones", text: "Revisión, elaboración y negociación de contratos, acuerdos, cartas notariales y documentos vinculados a relaciones civiles." },
-      { title: "Responsabilidad civil", text: "Evaluación de daños, incumplimientos, controversias patrimoniales e indemnizaciones." },
-      { title: "Solución de controversias", text: "Estrategia para conciliaciones, procesos judiciales y mecanismos de solución directa." }
+    id:"civil", number:"02", title:"Derecho Civil y Patrimonial", group:"Controversias y defensa", image:"assets/img/servicio-civil.webp",
+    excerpt:"Contratos, obligaciones, responsabilidad civil, patrimonio y solución de controversias para personas y empresas.",
+    focus:["Contratos y obligaciones", "Responsabilidad civil", "Patrimonio y propiedad", "Negociación y controversias"],
+    details:[
+      {title:"Contratos y obligaciones", text:"Redacción, revisión, negociación e interpretación de contratos, acuerdos, cartas notariales y compromisos privados."},
+      {title:"Responsabilidad civil", text:"Evaluación de incumplimientos, daños, indemnizaciones y contingencias patrimoniales."},
+      {title:"Defensa patrimonial", text:"Estrategia para proteger derechos, activos y posiciones contractuales frente a controversias."},
+      {title:"Solución de controversias", text:"Negociación, conciliación, preparación documental y patrocinio judicial cuando corresponda."}
     ]
   },
   {
-    id: "derecho-inmobiliario-registral",
-    title: "Derecho Inmobiliario y Registral",
-    kicker: "Propiedad y registro",
-    icon: "inmobiliario",
-    excerpt: "Saneamiento, transferencias, posesión, propiedad, inscripción registral y asesoría en operaciones inmobiliarias.",
-    image: "inmobiliario",
-    details: [
-      { title: "Saneamiento de propiedad", text: "Revisión de antecedentes, partidas registrales, títulos, cargas, gravámenes y situación legal del inmueble." },
-      { title: "Operaciones inmobiliarias", text: "Acompañamiento en compraventas, arrendamientos, cesiones, transferencias y contratos vinculados a inmuebles." },
-      { title: "Gestión registral", text: "Preparación de documentación y seguimiento de trámites ante registros públicos y entidades competentes." }
+    id:"inmobiliario", number:"03", title:"Inmobiliario, Registral y Municipal", group:"Empresa y patrimonio", image:"assets/img/servicio-inmobiliario.webp",
+    excerpt:"Saneamiento, operaciones inmobiliarias, revisión registral y acompañamiento frente a exigencias municipales relacionadas con inmuebles y actividades económicas.",
+    focus:["Saneamiento registral", "Compraventa y arrendamiento", "Due diligence inmobiliario", "Gestión y regulación municipal"],
+    details:[
+      {title:"Saneamiento y revisión registral", text:"Análisis de partidas, títulos, cargas, gravámenes, antecedentes y documentación vinculada a la propiedad."},
+      {title:"Operaciones inmobiliarias", text:"Acompañamiento en compraventas, arrendamientos, cesiones, transferencias y otros contratos sobre inmuebles."},
+      {title:"Due diligence", text:"Revisión legal previa a operaciones para identificar contingencias y definir medidas de mitigación."},
+      {title:"Ámbito municipal", text:"Asesoría en procedimientos y exigencias municipales vinculadas a inmuebles, funcionamiento y actuación administrativa."}
     ]
   },
   {
-    id: "derecho-constitucional",
-    title: "Derecho Constitucional",
-    kicker: "Garantías y derechos",
-    icon: "constitucional",
-    excerpt: "Defensa de derechos fundamentales, procesos constitucionales, garantías y controversias de relevancia pública.",
-    image: "constitucional",
-    details: [
-      { title: "Procesos constitucionales", text: "Patrocinio en acciones orientadas a la tutela de derechos fundamentales y garantías constitucionales." },
-      { title: "Análisis de afectación de derechos", text: "Evaluación técnica de actos, omisiones o decisiones que pudieran vulnerar derechos constitucionales." },
-      { title: "Estrategia legal", text: "Diseño de argumentos, medios probatorios y escritos con enfoque constitucional." }
+    id:"constitucional", number:"04", title:"Derecho Constitucional", group:"Derecho público y regulación", image:"assets/img/servicio-constitucional.webp",
+    excerpt:"Tutela de derechos fundamentales, control de actuaciones públicas y estrategia jurídica con enfoque constitucional.",
+    focus:["Procesos constitucionales", "Debido proceso", "Tutela de derechos", "Análisis constitucional"],
+    details:[
+      {title:"Tutela constitucional", text:"Evaluación y patrocinio en procesos destinados a proteger derechos fundamentales frente a actos u omisiones lesivos."},
+      {title:"Debido proceso y motivación", text:"Análisis de decisiones públicas o privadas con incidencia en garantías constitucionales."},
+      {title:"Estrategia de argumentación", text:"Construcción de posiciones jurídicas integrando hechos, prueba y principios constitucionales."},
+      {title:"Control de actuaciones", text:"Revisión de medidas, procedimientos y decisiones que puedan comprometer derechos o garantías."}
     ]
   },
   {
-    id: "derecho-administrativo",
-    title: "Derecho Administrativo",
-    kicker: "Procedimientos y sanciones",
-    icon: "administrativo",
-    excerpt: "Asesoría en procedimientos administrativos, recursos, fiscalizaciones, sanciones y actuaciones ante entidades públicas.",
-    image: "administrativo",
-    details: [
-      { title: "Procedimiento administrativo", text: "Atención de solicitudes, descargos, recursos administrativos, expedientes y actuaciones ante entidades públicas." },
-      { title: "Fiscalización y sanciones", text: "Defensa frente a procedimientos sancionadores, medidas administrativas, multas y observaciones." },
-      { title: "Estrategia documental", text: "Ordenamiento de antecedentes, medios probatorios y argumentos de defensa administrativa." }
+    id:"administrativo", number:"05", title:"Derecho Administrativo y Regulatorio", group:"Derecho público y regulación", image:"assets/img/servicio-administrativo.webp",
+    excerpt:"Procedimientos administrativos, fiscalización, sanciones, regulación y defensa frente a entidades públicas.",
+    focus:["Procedimiento administrativo", "PAS y fiscalización", "Recursos administrativos", "Regulación y actuación estatal"],
+    details:[
+      {title:"Procedimiento administrativo", text:"Solicitudes, descargos, recursos, expedientes y actuaciones ante entidades públicas."},
+      {title:"Fiscalización y sanciones", text:"Defensa frente a procedimientos sancionadores, medidas administrativas, multas y observaciones."},
+      {title:"Regulación y legalidad", text:"Análisis de competencias, exigencias regulatorias, actos administrativos y marcos sectoriales aplicables."},
+      {title:"Estrategia probatoria", text:"Ordenamiento de antecedentes y construcción de argumentos con trazabilidad documental."}
     ]
   },
   {
-    id: "derecho-laboral",
-    title: "Derecho Laboral",
-    kicker: "Relaciones laborales",
-    icon: "laboral",
-    excerpt: "Asesoría en relaciones laborales, contratación, desvinculación, reclamos, sanciones, conciliaciones y defensa laboral.",
-    image: "laboral",
-    details: [
-      { title: "Asesoría laboral preventiva", text: "Revisión de contratos, obligaciones laborales, reglamentos, políticas internas y contingencias." },
-      { title: "Conflictos laborales", text: "Atención de reclamos, conciliaciones, cartas, despidos, sanciones y controversias individuales o colectivas." },
-      { title: "Defensa legal", text: "Patrocinio en procedimientos administrativos y judiciales vinculados a materia laboral." }
+    id:"laboral", number:"06", title:"Derecho Laboral y Empleo Público", group:"Personas y organizaciones", image:"assets/img/servicio-laboral.webp",
+    excerpt:"Prevención y solución de contingencias laborales en el ámbito privado y asesoría en relaciones de empleo vinculadas al sector público.",
+    focus:["Contratación y políticas", "Desvinculación y sanciones", "Controversias laborales", "Empleo público"],
+    details:[
+      {title:"Prevención laboral", text:"Revisión de contratos, políticas, reglamentos, obligaciones y contingencias en relaciones de trabajo."},
+      {title:"Conflictos y desvinculación", text:"Asesoría en sanciones, terminación de vínculos, reclamos, conciliación y defensa."},
+      {title:"Empleo público", text:"Análisis de situaciones vinculadas a servidores, directivos, responsabilidades y procedimientos internos."},
+      {title:"Defensa administrativa y judicial", text:"Preparación de escritos, documentación y estrategia frente a controversias laborales."}
     ]
   },
   {
-    id: "administracion-publica",
-    title: "Administración Pública",
-    kicker: "Gestión pública",
-    icon: "publica",
-    excerpt: "Asesoría legal y técnica para entidades, funcionarios y servidores en gestión pública, control y responsabilidad funcional.",
-    image: "publica",
-    details: [
-      { title: "Gestión pública y legalidad", text: "Asesoría en competencias, funciones, actos administrativos, informes, responsabilidades y toma de decisiones públicas." },
-      { title: "Control y responsabilidad", text: "Evaluación de riesgos administrativos, funcionales y documentales frente a órganos de control o fiscalización." },
-      { title: "Soporte técnico institucional", text: "Elaboración de informes, opiniones, descargos y documentos de gestión con enfoque legal y administrativo." }
+    id:"administracion-publica", number:"07", title:"Administración Pública y Responsabilidad Funcional", group:"Derecho público y regulación", image:"assets/img/servicio-administracion-publica.webp",
+    excerpt:"Asesoría jurídico-administrativa para entidades, funcionarios y servidores en toma de decisiones, control, responsabilidades e instrumentos de gestión.",
+    focus:["Gestión pública y competencias", "Responsabilidad funcional", "Control y fiscalización", "Instrumentos y documentos de gestión"],
+    details:[
+      {title:"Decisión pública y legalidad", text:"Asesoría sobre competencias, atribuciones, actos, informes y decisiones institucionales."},
+      {title:"Responsabilidad funcional", text:"Evaluación de riesgos y defensa frente a observaciones, investigaciones y procedimientos vinculados al ejercicio de funciones."},
+      {title:"Control y trazabilidad", text:"Revisión documental y preparación de respuestas ante requerimientos de control o fiscalización."},
+      {title:"Gestión institucional", text:"Soporte en instrumentos, procedimientos internos, organización y documentación de decisiones."}
     ]
   },
   {
-    id: "contrataciones-estado",
-    title: "Contrataciones del Estado",
-    kicker: "Compras públicas",
-    icon: "contrataciones",
-    excerpt: "Asesoría en requerimientos, expedientes de contratación, ejecución contractual, controversias y gestión de riesgos.",
-    image: "contrataciones",
-    details: [
-      { title: "Fase preparatoria", text: "Revisión de requerimientos, términos de referencia, especificaciones técnicas, indagación de mercado y documentación del expediente." },
-      { title: "Ejecución contractual", text: "Acompañamiento en conformidades, penalidades, ampliaciones, adicionales, controversias y obligaciones contractuales." },
-      { title: "Prevención de contingencias", text: "Identificación de riesgos legales, administrativos y presupuestales en procesos de contratación pública." }
+    id:"contrataciones", number:"08", title:"Contrataciones del Estado e Infraestructura", group:"Derecho público y regulación", image:"assets/img/servicio-contrataciones.webp",
+    excerpt:"Asesoría en contratación pública y ejecución contractual, con mirada legal, técnica y preventiva sobre proyectos, servicios y obras.",
+    focus:["Fase preparatoria", "Procedimientos de selección", "Ejecución contractual", "Controversias y riesgos"],
+    details:[
+      {title:"Preparación y estructuración", text:"Revisión de requerimientos, términos de referencia, especificaciones, expedientes y documentación previa."},
+      {title:"Selección y participación", text:"Asesoría a entidades, proveedores y contratistas dentro del marco aplicable a la contratación pública."},
+      {title:"Ejecución contractual", text:"Conformidades, penalidades, ampliaciones, modificaciones, obligaciones y contingencias durante la ejecución."},
+      {title:"Infraestructura y controversias", text:"Análisis de riesgos legales asociados a proyectos, obras y servicios, y preparación de estrategias de solución."}
     ]
   },
   {
-    id: "derecho-electoral",
-    title: "Derecho Electoral",
-    kicker: "Procesos electorales",
-    icon: "electoral",
-    excerpt: "Asesoría en procedimientos electorales, organizaciones políticas, candidaturas, tachas, exclusiones y defensa electoral.",
-    image: "electoral",
-    details: [
-      { title: "Asesoría electoral", text: "Revisión de requisitos, documentación, candidaturas, inscripción y cumplimiento de reglas electorales." },
-      { title: "Defensa en controversias", text: "Atención de tachas, exclusiones, observaciones, apelaciones y procedimientos ante órganos electorales." },
-      { title: "Estrategia preventiva", text: "Ordenamiento documental y prevención de riesgos legales durante procesos electorales." }
+    id:"electoral", number:"09", title:"Derecho Electoral", group:"Derecho público y regulación", image:"assets/img/servicio-electoral.webp",
+    excerpt:"Asesoría preventiva y defensa en procedimientos electorales, candidaturas, organizaciones políticas y controversias ante órganos electorales.",
+    focus:["Inscripción y candidaturas", "Tachas y exclusiones", "Apelaciones", "Cumplimiento preventivo"],
+    details:[
+      {title:"Planificación electoral", text:"Revisión de requisitos, cronogramas y documentación para reducir contingencias antes de la presentación."},
+      {title:"Controversias", text:"Defensa frente a observaciones, tachas, exclusiones y otros procedimientos electorales."},
+      {title:"Impugnaciones", text:"Preparación de recursos y argumentación ante los órganos electorales competentes."},
+      {title:"Organizaciones políticas", text:"Asesoría documental y preventiva en obligaciones y actuaciones de naturaleza electoral."}
+    ]
+  },
+  {
+    id:"corporativo", number:"10", title:"Corporativo y Contratos", group:"Empresa y patrimonio", image:"assets/img/area-corporativo.webp",
+    excerpt:"Soporte legal para decisiones empresariales, contratos, gobierno corporativo y ordenamiento de relaciones comerciales.",
+    focus:["Contratos comerciales", "Gobierno corporativo", "Organización societaria", "Prevención de contingencias"],
+    details:[
+      {title:"Contratos y negociación", text:"Redacción y revisión de acuerdos comerciales, prestación de servicios, alianzas y documentos empresariales."},
+      {title:"Organización societaria", text:"Soporte en decisiones corporativas, documentación societaria y relaciones entre órganos de la empresa."},
+      {title:"Gobierno corporativo", text:"Políticas internas, delegaciones, trazabilidad de acuerdos y soporte jurídico a la gestión."},
+      {title:"Prevención de conflictos", text:"Identificación temprana de riesgos contractuales y diseño de mecanismos para mitigarlos."}
+    ]
+  },
+  {
+    id:"compliance", number:"11", title:"Compliance, Integridad y Prevención", group:"Empresa y patrimonio", image:"assets/img/area-compliance.webp",
+    excerpt:"Diseño de controles, matrices de riesgo y respuestas preventivas para fortalecer integridad, cumplimiento y toma de decisiones documentada.",
+    focus:["Mapas de riesgo", "Integridad y anticorrupción", "Due diligence", "Protocolos y controles"],
+    details:[
+      {title:"Diagnóstico de riesgos", text:"Identificación de contingencias legales, operativas y reputacionales relevantes para la organización."},
+      {title:"Integridad y prevención", text:"Lineamientos, protocolos y medidas de control orientadas a prevenir hechos de corrupción y otros incumplimientos."},
+      {title:"Due diligence", text:"Revisión legal y reputacional de contrapartes, operaciones y relaciones relevantes."},
+      {title:"Respuesta y mejora", text:"Planes de acción, documentación de controles y recomendaciones para fortalecer la trazabilidad institucional."}
+    ]
+  },
+  {
+    id:"tecnologia-datos-ia", number:"12", title:"Tecnología, Datos e Inteligencia Artificial", group:"Innovación y economía digital", image:"assets/img/area-digital.webp",
+    excerpt:"Asesoría sobre protección de datos, evidencia digital, contratos tecnológicos y uso responsable de inteligencia artificial en organizaciones y servicios profesionales.",
+    focus:["Protección de datos", "Contratos tecnológicos", "Evidencia digital", "Gobernanza de IA"],
+    details:[
+      {title:"Protección de datos", text:"Revisión de tratamientos de información personal, deberes documentales y medidas de cumplimiento."},
+      {title:"Contratos y servicios digitales", text:"Análisis de términos, licencias, prestación de servicios tecnológicos y asignación de responsabilidades."},
+      {title:"Evidencia digital", text:"Criterios de preservación, ordenamiento y trazabilidad documental para su uso en estrategias legales."},
+      {title:"Inteligencia artificial", text:"Apoyo en políticas internas, gestión de riesgos, uso responsable y revisión de procesos asistidos por IA."}
     ]
   }
+];
+window.AREAS = window.PRACTICES;
+
+window.SECTORS = [
+  {title:"Sector público y gobiernos subnacionales", text:"Asesoría jurídica para decisiones, procedimientos, control y gestión institucional."},
+  {title:"Infraestructura, obras y contratación pública", text:"Soporte en proyectos, ejecución contractual, riesgos y controversias."},
+  {title:"Empresas y emprendimientos", text:"Contratos, organización corporativa, prevención y solución de contingencias."},
+  {title:"Inmobiliario y patrimonio", text:"Operaciones, saneamiento, registro, propiedad y relaciones contractuales."},
+  {title:"Tecnología y servicios digitales", text:"Datos personales, contratos tecnológicos, evidencia digital e inteligencia artificial."},
+  {title:"Procesos electorales y organizaciones políticas", text:"Prevención, documentación y defensa en actuaciones electorales."}
 ];
 
 window.STAFF = [
   {
-    id: "jean-vargas",
-    name: "Jeanfranco M. Vargas Luque",
-    role: "Consultor Legal y de Gestión Pública",
-    area: "Derecho Administrativo, Gestión Pública y Contrataciones",
-    languages: ["Español"],
-    bio: "Abogado, contador y consultor en gestión pública, con experiencia en gobiernos locales, procedimientos administrativos, planeamiento, presupuesto, contrataciones y defensa técnica institucional.",
-    education: ["Derecho", "Contabilidad", "Gestión Pública", "Proyectos de Inversión"],
-    image: "JV",
-    photo: "assets/img/team-jeanfranco.webp"
+    id:"oscar-moreno", name:"Oscar Felipe Moreno Tupia", role:"Responsable del Estudio Jurídico", area:"Dirección jurídica · Defensa y estrategia legal", photo:"assets/img/team-oscar.webp",
+    bio:"Abogado colegiado responsable del Estudio Jurídico ALTUM Abogados & Asociados, orientado a la defensa técnica, asesoría estratégica y acompañamiento jurídico integral.",
+    credentials:["Abogado colegiado", "CAL 74763", "Dirección jurídica", "Estrategia legal"]
   },
   {
-    id: "asociado-corporativo",
-    name: "Asociado Corporativo",
-    role: "Especialista en Derecho Empresarial",
-    area: "Corporativo y Compliance",
-    languages: ["Español"],
-    bio: "Perfil editable para abogado corporativo encargado de contratos, cumplimiento, formalización empresarial y soporte preventivo.",
-    education: ["Derecho Corporativo", "Compliance"],
-    image: "AC",
-    photo: ""
-  },
-  {
-    id: "asociado-penal",
-    name: "Asociado Senior Penal",
-    role: "Especialista en Litigación Penal",
-    area: "Defensa Penal Estratégica",
-    languages: ["Español", "Inglés"],
-    bio: "Perfil editable para incorporar a un abogado del equipo. Se recomienda añadir experiencia, estudios, membresías y casos representativos no confidenciales.",
-    education: ["Derecho Penal", "Litigación Oral"],
-    image: "AP",
-    photo: "assets/img/team-asociado-senior.webp"
-  },
-  {
-    id: "oscar-moreno",
-    name: "Oscar Felipe Moreno Tupia",
-    role: "Responsable del Estudio Jurídico",
-    area: "Abogado Colegiado · CAL 74763",
-    languages: ["Español"],
-    bio: "Responsable del Estudio Jurídico ALTUM Abogados & Asociados. Abogado colegiado con enfoque en defensa técnica, asesoría estratégica y acompañamiento jurídico integral.",
-    education: ["Abogado Colegiado", "CAL 74763", "Dirección jurídica", "Estrategia legal"],
-    image: "OM",
-    photo: "assets/img/team-oscar.webp"
+    id:"jeanfranco-vargas", name:"Jeanfranco Martín Vargas Luque", role:"Consultor Legal y de Gestión Pública", area:"Derecho Administrativo · Gestión Pública · Contrataciones", photo:"assets/img/team-jeanfranco.webp",
+    bio:"Abogado, contador y consultor con experiencia en gestión pública, procedimientos administrativos, planeamiento, presupuesto, contrataciones y estrategia jurídico-institucional.",
+    credentials:["Derecho", "Contabilidad", "Gestión pública", "Proyectos de inversión"]
   }
 ];
 
-window.POSTS = [
-  { id: "reforma-administrativa", type: "Artículos", date: "21 de Mayo", title: "Nuevos retos del procedimiento administrativo y la defensa del administrado", excerpt: "Comentario sobre garantías, plazos, debida motivación y estrategia legal en procedimientos administrativos.", body: "Este texto es editable. Puede desarrollar aquí un análisis jurídico completo con antecedentes, base normativa, comentarios técnicos y conclusiones.", author: "Equipo Legal" },
-  { id: "compliance-municipal", type: "Blog Legal", date: "18 de Mayo", title: "Compliance público: prevención de riesgos en gobiernos locales", excerpt: "Lineamientos para ordenar funciones, responsabilidades, riesgos y evidencias documentales dentro de entidades públicas.", body: "Contenido editable para el blog legal del estudio. Se recomienda incorporar referencias normativas actualizadas antes de publicar.", author: "Área de Gestión Pública" },
-  { id: "contrataciones-publicas", type: "Artículos", date: "15 de Mayo", title: "Contrataciones públicas: rol del área usuaria y gestión de conformidades", excerpt: "Una mirada práctica a la necesidad, requerimiento, certificación, orden, ejecución y conformidad del servicio.", body: "Contenido base para explicar el ciclo de contratación pública, evitando tecnicismos excesivos y usando ejemplos operativos.", author: "Equipo Legal" },
-  { id: "prueba-digital", type: "Pastilla Informativa", date: "08 de Mayo", title: "Prueba digital: criterios básicos para preservar evidencia", excerpt: "Recomendaciones iniciales sobre respaldo, trazabilidad y ordenamiento documental de evidencia digital.", body: "Texto editable para una pastilla informativa sobre evidencia digital, sin sustituir asesoría especializada.", author: "Área Digital" }
+window.INSIGHTS = [
+  {id:"motivacion-procedimiento", category:"Derecho público", title:"Debida motivación y estrategia de defensa en procedimientos administrativos", excerpt:"La calidad de una defensa administrativa depende tanto del argumento jurídico como de la forma en que se ordenan hechos, prueba y trazabilidad documental.", body:"Una estrategia administrativa sólida parte de reconstruir el expediente, identificar la competencia de la autoridad, separar hechos de valoraciones y vincular cada argumento con evidencia verificable. El objetivo no es presentar más documentos, sino construir una secuencia comprensible que permita evaluar legalidad, motivación, proporcionalidad y debido procedimiento.", author:"Equipo ALTUM"},
+  {id:"riesgos-ejecucion-contractual", category:"Contratación pública", title:"Cómo ordenar riesgos durante la ejecución contractual", excerpt:"Penalidades, conformidades, ampliaciones y comunicaciones requieren una lectura conjunta del contrato, el expediente y la evidencia de ejecución.", body:"Las controversias contractuales suelen agravarse cuando las decisiones no quedan correctamente sustentadas. Una revisión preventiva debe identificar obligaciones, hitos, responsables, comunicaciones, plazos y medios de prueba antes de que una incidencia se convierta en conflicto.", author:"Equipo ALTUM"},
+  {id:"evidencia-digital", category:"Tecnología y derecho", title:"Evidencia digital: preservar antes de argumentar", excerpt:"Capturas, mensajes, archivos y registros digitales requieren orden y contexto para conservar su utilidad dentro de una estrategia jurídica.", body:"El valor de la evidencia digital aumenta cuando puede explicarse su origen, contexto, integridad y secuencia. Preservar archivos originales, registrar fechas y mantener una copia organizada son medidas básicas antes de elaborar conclusiones jurídicas.", author:"Equipo ALTUM"},
+  {id:"integridad-prevencion", category:"Compliance", title:"Integridad y prevención: documentar decisiones antes de una contingencia", excerpt:"Los controles más útiles son los que dejan evidencia clara de quién decidió, con qué información y bajo qué reglas.", body:"Un sistema de prevención debe ser proporcional a los riesgos reales de la organización. Matrices simples, responsabilidades definidas, procesos de revisión y documentos trazables suelen ser más eficaces que políticas extensas que no se aplican en la operación diaria.", author:"Equipo ALTUM"}
 ];
+window.POSTS = window.INSIGHTS;
 
-window.NEWS = [
-  { id: "casacion-modelo", type: "Jurisprudencia", date: "13 de Febrero", title: "Casación relevante sobre motivación de resoluciones y debido proceso", excerpt: "Ficha editable para cargar jurisprudencia, resumen, enlace de descarga y comentario breve.", download: "#" },
-  { id: "norma-legal", type: "Normas Legales", date: "11 de Febrero", title: "Norma legal de interés para entidades públicas y administrados", excerpt: "Registro de norma legal con sumilla, fecha, fuente y archivo de respaldo.", download: "#" },
-  { id: "informativo", type: "Informativos", date: "07 de Febrero", title: "Informativo legal: obligaciones documentales en procedimientos administrativos", excerpt: "Boletín breve para clientes sobre cuidados documentales y organización de expedientes.", download: "#" },
-  { id: "proyecto-ley", type: "Proyecto de Ley", date: "07 de Febrero", title: "Proyecto de ley con incidencia en gestión pública y responsabilidad administrativa", excerpt: "Ficha editable para seguimiento normativo y análisis de impacto.", download: "#" }
+window.LEGAL_UPDATES = [
+  {id:"jurisprudencia", category:"Jurisprudencia", title:"Biblioteca de criterios y decisiones relevantes", excerpt:"Espacio destinado a sistematizar jurisprudencia útil para las áreas de práctica del estudio."},
+  {id:"alertas", category:"Alertas legales", title:"Seguimiento de cambios normativos", excerpt:"Selección de normas y cambios regulatorios con impacto práctico para clientes y organizaciones."},
+  {id:"documentos", category:"Informativos", title:"Guías y notas prácticas", excerpt:"Material breve para ordenar decisiones, procedimientos y documentación legal."}
 ];
+window.NEWS = window.LEGAL_UPDATES;
 
 window.EVENTS = [
-  {
-    id: "ia-derecho-compliance",
-    date: "26 de marzo de 2026",
-    title: "IA, Derecho y Compliance Corporativo",
-    excerpt: "Seminario especializado sobre riesgos, regulación y oportunidades de la inteligencia artificial aplicada al derecho y a la empresa.",
-    status: "Próximo evento",
-    hours: "24 horas académicas",
-    whatsappText: "Hola, solicito información del evento IA, Derecho y Compliance Corporativo.",
-    benefits: ["Ponentes especialistas", "Sesiones grabadas", "Material académico incluido", "Certificación digital"],
-    certification: "Los participantes recibirán constancia digital emitida por la dirección académica del estudio y/o aliados institucionales, previa validación de asistencia.",
-    schedule: ["Jueves: marco regulatorio y riesgos", "Viernes: empresa, ciberseguridad y cumplimiento", "Sábado: talleres prácticos y casos aplicados"],
-    topics: ["Regulación de IA", "Compliance corporativo", "Protección de datos", "Evidencia digital", "Responsabilidad empresarial"],
-    speakers: ["Especialista en IA y Derecho", "Especialista en Compliance", "Especialista en Gestión Pública", "Especialista en Ciberseguridad"],
-    price: "Preventa S/ 55 | Regular S/ 99"
-  },
-  {
-    id: "contrataciones-estado",
-    date: "10 de julio de 2026",
-    title: "Contrataciones públicas y responsabilidad del área usuaria",
-    excerpt: "Capacitación práctica sobre requerimientos, ejecución contractual, conformidades y control documental.",
-    status: "Programado",
-    hours: "16 horas académicas",
-    whatsappText: "Hola, solicito información del evento de contrataciones públicas.",
-    benefits: ["Casos prácticos", "Material editable", "Certificación", "Acceso a grabación"],
-    certification: "Certificación digital conforme a participación y evaluación básica.",
-    schedule: ["Sesión 1: actos preparatorios", "Sesión 2: ejecución contractual", "Sesión 3: conformidades y responsabilidades"],
-    topics: ["Área usuaria", "TDR/EETT", "Órdenes", "Conformidades", "Penalidades"],
-    speakers: ["Especialista en contrataciones", "Especialista en presupuesto público"],
-    price: "Consultar"
-  }
+  {id:"ia-derecho-compliance", date:"26 de marzo de 2026", title:"IA, Derecho y Compliance Corporativo", excerpt:"Actividad académica especializada sobre riesgos, regulación y oportunidades de la inteligencia artificial aplicada al derecho y a la empresa.", status:"Actividad realizada", image:"assets/img/evento-ia-derecho.webp"}
 ];
