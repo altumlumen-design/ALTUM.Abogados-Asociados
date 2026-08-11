@@ -1,0 +1,3 @@
+d2048936468cae141d3ccd692f726358d8d37f3f7a9570a8a4f0a116d13b1cde  assets/css/styles.css
+03c8ab000dafb23ee161cd31651288b7e0181f6aa549953db5845f5d0267803b  assets/img/hero-principal.webp
+efe7b57e2c3a513a023d3eeff8aced9a51f62be4585d56f3b1321b4c9aad9309  assets/img/isotipo-editorial.webp
