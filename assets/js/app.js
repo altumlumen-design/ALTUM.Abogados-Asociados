@@ -5,6 +5,24 @@
   const escapeHtml = (v='') => String(v).replace(/[&<>'"]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#039;','"':'&quot;'}[m]));
   const param = name => new URLSearchParams(location.search).get(name);
 
+  function brandMeta(){
+    const head=document.head;
+    const addLink=(rel,href,attrs={})=>{
+      if([...head.querySelectorAll(`link[rel="${rel}"]`)].some(x=>x.getAttribute('href')===href)) return;
+      const link=document.createElement('link');
+      link.rel=rel; link.href=href;
+      Object.entries(attrs).forEach(([k,v])=>link.setAttribute(k,v));
+      head.appendChild(link);
+    };
+    addLink('icon','assets/icons/favicon-32.png',{type:'image/png',sizes:'32x32'});
+    addLink('apple-touch-icon','assets/icons/apple-touch-icon.png',{sizes:'180x180'});
+    addLink('manifest','site.webmanifest');
+    let theme=head.querySelector('meta[name="theme-color"]');
+    if(!theme){theme=document.createElement('meta');theme.name='theme-color';head.appendChild(theme)}
+    theme.content='#050b12';
+    document.documentElement.dataset.altumBrand='2026-final';
+  }
+
   function hydrateConfig(){
     $$('[data-firm]').forEach(el=>el.textContent=cfg.firmName || 'ALTUM Abogados & Asociados');
     $$('[data-short]').forEach(el=>el.textContent=cfg.shortName || 'ALTUM Abogados & Asociados');
@@ -28,18 +46,19 @@
     const drawer=$('.mobile-drawer');
     const close=$('.drawer-close');
     const overlay=$('.drawer-overlay');
-    const open=()=>{drawer?.classList.add('open'); overlay?.classList.add('open'); document.body.classList.add('menu-open'); toggle?.setAttribute('aria-expanded','true')};
+    const open=()=>{drawer?.classList.add('open'); overlay?.classList.add('open'); document.body.classList.add('menu-open'); toggle?.setAttribute('aria-expanded','true'); close?.focus({preventScroll:true})};
     const shut=()=>{drawer?.classList.remove('open'); overlay?.classList.remove('open'); document.body.classList.remove('menu-open'); toggle?.setAttribute('aria-expanded','false')};
     toggle?.addEventListener('click',open); close?.addEventListener('click',shut); overlay?.addEventListener('click',shut);
     $$('.mobile-drawer a').forEach(a=>a.addEventListener('click',shut));
+    addEventListener('keydown',e=>{if(e.key==='Escape')shut()});
     const onScroll=()=>header?.classList.toggle('scrolled',scrollY>18);
     addEventListener('scroll',onScroll,{passive:true}); onScroll();
   }
 
   function reveal(){
     const els=$$('[data-reveal]');
-    if(!('IntersectionObserver' in window)){els.forEach(e=>e.classList.add('is-visible'));return;}
-    const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-visible');io.unobserve(e.target)}}),{threshold:.12,rootMargin:'0px 0px -30px'});
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)){els.forEach(e=>e.classList.add('is-visible'));return;}
+    const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-visible');io.unobserve(e.target)}}),{threshold:.1,rootMargin:'0px 0px -24px'});
     els.forEach(el=>io.observe(el));
   }
 
@@ -115,7 +134,7 @@
     $$('[data-render="updates"]').forEach(box=>{box.innerHTML=(window.LEGAL_UPDATES||[]).map(n=>`<article class="update-row" data-reveal><small>${escapeHtml(n.category)}</small><h3>${escapeHtml(n.title)}</h3><p>${escapeHtml(n.excerpt)}</p></article>`).join('')});
   }
   function renderEvents(){
-    $$('[data-render="events"]').forEach(box=>{box.innerHTML=(window.EVENTS||[]).map(e=>`<article class="event-card" data-reveal><div class="event-image"><img src="${escapeHtml(e.image)}" alt="" loading="lazy"></div><div><small>${escapeHtml(e.status)} · ${escapeHtml(e.date)}</small><h3>${escapeHtml(e.title)}</h3><p>${escapeHtml(e.excerpt)}</p><a class="text-link" href="evento-detalle.html?id=${encodeURIComponent(e.id)}">Ver actividad ${arrow}</a></div></article>`).join('')});
+    $$('[data-render="events"]').forEach(box=>{box.innerHTML=(window.EVENTS||[]).map(e=>`<article class="event-card" data-reveal><div class="event-image"><img src="${escapeHtml(e.image)}" alt="" loading="lazy" decoding="async"></div><div><small>${escapeHtml(e.status)} · ${escapeHtml(e.date)}</small><h3>${escapeHtml(e.title)}</h3><p>${escapeHtml(e.excerpt)}</p><a class="text-link" href="evento-detalle.html?id=${encodeURIComponent(e.id)}">Ver actividad ${arrow}</a></div></article>`).join('')});
   }
 
   function detailPractice(){
@@ -123,7 +142,7 @@
     const p=(window.PRACTICES||[]).find(x=>x.id===param('id')) || (window.PRACTICES||[])[0]; if(!p)return;
     document.title=`${p.title} | ALTUM Abogados & Asociados`;
     $('[data-detail-number]',root).textContent=p.number; $('[data-detail-group]',root).textContent=p.group; $('[data-detail-title]',root).textContent=p.title; $('[data-detail-excerpt]',root).textContent=p.excerpt;
-    const img=$('[data-detail-image]',root); img.src=p.image; img.alt=p.title;
+    const img=$('[data-detail-image]',root); img.src=p.image; img.alt=p.title; img.decoding='async';
     $('[data-detail-focus]',root).innerHTML=p.focus.map(x=>`<li>${escapeHtml(x)}</li>`).join('');
     $('[data-detail-services]',root).innerHTML=p.details.map((x,i)=>`<article class="service-detail" data-reveal><span>0${i+1}</span><h3>${escapeHtml(x.title)}</h3><p>${escapeHtml(x.text)}</p></article>`).join('');
   }
@@ -143,7 +162,7 @@
     const root=$('[data-event-detail]');if(!root)return;
     const e=(window.EVENTS||[]).find(x=>x.id===param('id')) || (window.EVENTS||[])[0];if(!e)return;
     $$('[data-event-status]',root).forEach(el=>el.textContent=e.status); $('[data-event-date]',root).textContent=e.date; $('[data-event-title]',root).textContent=e.title; $('[data-event-excerpt]',root).textContent=e.excerpt;
-    const img=$('[data-event-image]',root);img.src=e.image;img.alt=e.title;
+    const img=$('[data-event-image]',root);img.src=e.image;img.alt=e.title;img.decoding='async';
   }
 
   function contactForm(){
@@ -164,5 +183,5 @@
     $$(`[data-nav="${page}"]`).forEach(a=>a.classList.add('active'));
   }
 
-  hydrateConfig(); nav(); activeNav(); renderPractices(); renderPracticeIndex(); renderSectors(); renderTeam(); renderInsights(); renderUpdates(); renderEvents(); detailPractice(); detailInsight(); detailUpdate(); detailEvent(); contactForm(); reveal();
+  brandMeta(); hydrateConfig(); nav(); activeNav(); renderPractices(); renderPracticeIndex(); renderSectors(); renderTeam(); renderInsights(); renderUpdates(); renderEvents(); detailPractice(); detailInsight(); detailUpdate(); detailEvent(); contactForm(); reveal();
 })();

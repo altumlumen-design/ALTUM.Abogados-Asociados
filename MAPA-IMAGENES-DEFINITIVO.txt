@@ -1,0 +1,13 @@
+MAPA DE IMÁGENES — ÁREAS
+01 Derecho Penal y Penal Empresarial -> assets/img/servicio-penal.webp
+02 Derecho Civil y Patrimonial -> assets/img/servicio-civil.webp
+03 Inmobiliario, Registral y Municipal -> assets/img/servicio-inmobiliario.webp
+04 Derecho Constitucional -> assets/img/servicio-constitucional.webp
+05 Derecho Administrativo y Regulatorio -> assets/img/servicio-administrativo.webp
+06 Derecho Laboral y Empleo Público -> assets/img/servicio-laboral.webp
+07 Administración Pública y Responsabilidad Funcional -> assets/img/servicio-administracion-publica.webp
+08 Contrataciones del Estado e Infraestructura -> assets/img/servicio-contrataciones.webp
+09 Derecho Electoral -> assets/img/servicio-electoral.webp
+10 Corporativo y Contratos -> assets/img/area-corporativo.webp
+11 Compliance, Integridad y Prevención -> assets/img/area-compliance.webp
+12 Tecnología, Datos e Inteligencia Artificial -> assets/img/area-digital.webp
