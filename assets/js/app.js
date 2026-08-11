@@ -23,6 +23,32 @@
     document.documentElement.dataset.altumBrand='2026-final';
   }
 
+
+  function cleanLinks(){
+    const map={
+      'index.html':'./',
+      'firma.html':'firma/',
+      'areas.html':'areas/',
+      'equipo.html':'equipo/',
+      'publicaciones.html':'publicaciones/',
+      'noticias.html':'noticias/',
+      'eventos.html':'eventos/',
+      'contacto.html':'contacto/',
+      'area-detalle.html':'area/',
+      'publicacion-detalle.html':'publicacion/',
+      'noticia-detalle.html':'noticia/',
+      'evento-detalle.html':'evento/'
+    };
+    $$('a[href]').forEach(a=>{
+      const raw=a.getAttribute('href');
+      if(!raw || raw.startsWith('http') || raw.startsWith('mailto:') || raw.startsWith('tel:') || raw.startsWith('#')) return;
+      const m=raw.match(/^([^?#]+)(.*)$/);
+      if(!m) return;
+      const file=m[1], tail=m[2]||'';
+      if(map[file]) a.setAttribute('href', map[file]+tail);
+    });
+  }
+
   function hydrateConfig(){
     $$('[data-firm]').forEach(el=>el.textContent=cfg.firmName || 'ALTUM Abogados & Asociados');
     $$('[data-short]').forEach(el=>el.textContent=cfg.shortName || 'ALTUM Abogados & Asociados');
@@ -66,7 +92,7 @@
 
   function practiceCard(p, compact=false){
     return `<article class="practice-card ${compact?'compact':''}" data-reveal>
-      <a href="area-detalle.html?id=${encodeURIComponent(p.id)}" aria-label="Ver ${escapeHtml(p.title)}">
+      <a href="area/?id=${encodeURIComponent(p.id)}" aria-label="Ver ${escapeHtml(p.title)}">
         <div class="practice-media"><img src="${escapeHtml(p.image)}" alt="" loading="lazy" decoding="async"><span class="practice-number">${escapeHtml(p.number)}</span></div>
         <div class="practice-copy"><small>${escapeHtml(p.group)}</small><h3>${escapeHtml(p.title)}</h3><p>${escapeHtml(p.excerpt)}</p><span class="text-link">Ver experiencia ${arrow}</span></div>
       </a></article>`;
@@ -85,7 +111,7 @@
   function renderPracticeIndex(){
     const box=$('[data-practice-index]'); if(!box) return;
     const practices=window.PRACTICES||[];
-    box.innerHTML=practices.map(p=>`<a class="practice-index-row" href="area-detalle.html?id=${encodeURIComponent(p.id)}" data-group="${escapeHtml(p.group)}" data-search="${escapeHtml((p.title+' '+p.group+' '+p.focus.join(' ')).toLowerCase())}">
+    box.innerHTML=practices.map(p=>`<a class="practice-index-row" href="area/?id=${encodeURIComponent(p.id)}" data-group="${escapeHtml(p.group)}" data-search="${escapeHtml((p.title+' '+p.group+' '+p.focus.join(' ')).toLowerCase())}">
       <span>${escapeHtml(p.number)}</span><strong>${escapeHtml(p.title)}</strong><small>${escapeHtml(p.group)}</small>${arrow}</a>`).join('');
     const search=$('#practiceSearch');
     const filters=$$('[data-practice-filter]');
@@ -126,7 +152,7 @@
   }
   document.addEventListener('click',e=>{if(e.target.matches('[data-modal-close]'))e.target.closest('dialog')?.close()});
 
-  function insightCard(p){return `<article class="insight-card" data-reveal><a href="publicacion-detalle.html?id=${encodeURIComponent(p.id)}"><small>${escapeHtml(p.category)}</small><h3>${escapeHtml(p.title)}</h3><p>${escapeHtml(p.excerpt)}</p><span class="text-link">Leer análisis ${arrow}</span></a></article>`}
+  function insightCard(p){return `<article class="insight-card" data-reveal><a href="publicacion/?id=${encodeURIComponent(p.id)}"><small>${escapeHtml(p.category)}</small><h3>${escapeHtml(p.title)}</h3><p>${escapeHtml(p.excerpt)}</p><span class="text-link">Leer análisis ${arrow}</span></a></article>`}
   function renderInsights(){
     $$('[data-render="insights"]').forEach(box=>{let data=[...(window.INSIGHTS||[])];const limit=Number(box.dataset.limit||0);if(limit)data=data.slice(0,limit);box.innerHTML=data.map(insightCard).join('')});
   }
@@ -134,7 +160,7 @@
     $$('[data-render="updates"]').forEach(box=>{box.innerHTML=(window.LEGAL_UPDATES||[]).map(n=>`<article class="update-row" data-reveal><small>${escapeHtml(n.category)}</small><h3>${escapeHtml(n.title)}</h3><p>${escapeHtml(n.excerpt)}</p></article>`).join('')});
   }
   function renderEvents(){
-    $$('[data-render="events"]').forEach(box=>{box.innerHTML=(window.EVENTS||[]).map(e=>`<article class="event-card" data-reveal><div class="event-image"><img src="${escapeHtml(e.image)}" alt="" loading="lazy" decoding="async"></div><div><small>${escapeHtml(e.status)} · ${escapeHtml(e.date)}</small><h3>${escapeHtml(e.title)}</h3><p>${escapeHtml(e.excerpt)}</p><a class="text-link" href="evento-detalle.html?id=${encodeURIComponent(e.id)}">Ver actividad ${arrow}</a></div></article>`).join('')});
+    $$('[data-render="events"]').forEach(box=>{box.innerHTML=(window.EVENTS||[]).map(e=>`<article class="event-card" data-reveal><div class="event-image"><img src="${escapeHtml(e.image)}" alt="" loading="lazy" decoding="async"></div><div><small>${escapeHtml(e.status)} · ${escapeHtml(e.date)}</small><h3>${escapeHtml(e.title)}</h3><p>${escapeHtml(e.excerpt)}</p><a class="text-link" href="evento/?id=${encodeURIComponent(e.id)}">Ver actividad ${arrow}</a></div></article>`).join('')});
   }
 
   function detailPractice(){
@@ -183,5 +209,5 @@
     $$(`[data-nav="${page}"]`).forEach(a=>a.classList.add('active'));
   }
 
-  brandMeta(); hydrateConfig(); nav(); activeNav(); renderPractices(); renderPracticeIndex(); renderSectors(); renderTeam(); renderInsights(); renderUpdates(); renderEvents(); detailPractice(); detailInsight(); detailUpdate(); detailEvent(); contactForm(); reveal();
+  brandMeta(); hydrateConfig(); cleanLinks(); nav(); activeNav(); renderPractices(); renderPracticeIndex(); cleanLinks(); renderSectors(); renderTeam(); renderInsights(); renderUpdates(); renderEvents(); detailPractice(); detailInsight(); detailUpdate(); detailEvent(); cleanLinks(); contactForm(); reveal();
 })();
