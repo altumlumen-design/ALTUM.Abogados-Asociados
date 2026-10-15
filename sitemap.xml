@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://altumlumen-design.github.io/ALTUM.Abogados-Asociados/</loc></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url><loc>https://altumlumen-design.github.io/ALTUM.Abogados-Asociados/</loc><lastmod>2026-10-14</lastmod><image:image><image:loc>https://altumlumen-design.github.io/ALTUM.Abogados-Asociados/assets/img/hero-principal.webp</image:loc><image:title>Equipo jurídico ALTUM Abogados y Asociados</image:title></image:image></url>
   <url><loc>https://altumlumen-design.github.io/ALTUM.Abogados-Asociados/firma.html</loc></url>
   <url><loc>https://altumlumen-design.github.io/ALTUM.Abogados-Asociados/areas.html</loc></url>
-  <url><loc>https://altumlumen-design.github.io/ALTUM.Abogados-Asociados/equipo.html</loc></url>
+  <url><loc>https://altumlumen-design.github.io/ALTUM.Abogados-Asociados/equipo.html</loc><lastmod>2026-10-14</lastmod><image:image><image:loc>https://altumlumen-design.github.io/ALTUM.Abogados-Asociados/assets/img/team-oscar.webp</image:loc><image:title>Oscar Felipe Moreno Tupia</image:title></image:image><image:image><image:loc>https://altumlumen-design.github.io/ALTUM.Abogados-Asociados/assets/img/team-jeanfranco.webp</image:loc><image:title>Jeanfranco Martín Vargas Luque</image:title></image:image></url>
   <url><loc>https://altumlumen-design.github.io/ALTUM.Abogados-Asociados/publicaciones.html</loc></url>
   <url><loc>https://altumlumen-design.github.io/ALTUM.Abogados-Asociados/noticias.html</loc></url>
   <url><loc>https://altumlumen-design.github.io/ALTUM.Abogados-Asociados/eventos.html</loc></url>

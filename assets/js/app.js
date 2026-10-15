@@ -209,5 +209,52 @@
     $$(`[data-nav="${page}"]`).forEach(a=>a.classList.add('active'));
   }
 
-  brandMeta(); hydrateConfig(); cleanLinks(); nav(); activeNav(); renderPractices(); renderPracticeIndex(); cleanLinks(); renderSectors(); renderTeam(); renderInsights(); renderUpdates(); renderEvents(); detailPractice(); detailInsight(); detailUpdate(); detailEvent(); cleanLinks(); contactForm(); reveal();
+  function structuredData(){
+    const base='https://altumlumen-design.github.io/ALTUM.Abogados-Asociados/';
+    const page=document.body.dataset.page;
+    if(page==='inicio'){
+      const canonical=document.querySelector('link[rel="canonical"]');
+      const ogUrl=document.querySelector('meta[property="og:url"]');
+      if(canonical)canonical.href=base;
+      if(ogUrl)ogUrl.content=base;
+    }
+    if(!['inicio','equipo'].includes(page))return;
+    const graph=[
+      {
+        '@type':'LegalService',
+        '@id':`${base}#organization`,
+        name:'ALTUM Abogados & Asociados',
+        url:base,
+        logo:{'@type':'ImageObject',url:`${base}assets/img/logo-principal.png`},
+        image:`${base}assets/img/hero-principal.webp`,
+        description:'Estudio jurídico en Lima especializado en defensa, derecho público, empresa, patrimonio, contratación pública y cumplimiento.',
+        areaServed:{'@type':'Country',name:'Perú'},
+        parentOrganization:{'@type':'Organization',name:'ALTUM LUMEN S.A.C.',url:'https://altumlumen-design.github.io/Altum-Lumen-S.A.C./'}
+      },
+      {
+        '@type':'WebSite',
+        '@id':`${base}#website`,
+        name:'ALTUM Abogados & Asociados',
+        url:base,
+        inLanguage:'es-PE',
+        publisher:{'@id':`${base}#organization`}
+      },
+      ...(window.STAFF||[]).map(member=>({
+        '@type':'Person',
+        '@id':`${base}equipo.html#${member.id}`,
+        name:member.name,
+        image:`${base}${member.photo}`,
+        jobTitle:member.role,
+        description:member.bio,
+        url:`${base}equipo.html#${member.id}`,
+        worksFor:{'@id':`${base}#organization`}
+      }))
+    ];
+    const script=document.createElement('script');
+    script.type='application/ld+json';
+    script.textContent=JSON.stringify({'@context':'https://schema.org','@graph':graph});
+    document.head.appendChild(script);
+  }
+
+  brandMeta(); structuredData(); hydrateConfig(); cleanLinks(); nav(); activeNav(); renderPractices(); renderPracticeIndex(); cleanLinks(); renderSectors(); renderTeam(); renderInsights(); renderUpdates(); renderEvents(); detailPractice(); detailInsight(); detailUpdate(); detailEvent(); cleanLinks(); contactForm(); reveal();
 })();
